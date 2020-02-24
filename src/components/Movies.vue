@@ -11,14 +11,7 @@ export default {
   methods: {
     getMovies() {
       axios
-        .post('/.netlify/functions/getMovies', {
-        // .post('https://vuemovieapp.netlify.com/.netlify/functions/getMovies', {
-        //   headers: {
-        //     'Access-Control-Allow-Origin': '*',
-        //     'Access-Control-Allow-Headers':
-        //       'Origin, X-Requested-With, Content-Type, Accept'
-        //   }
-        })
+        .post('/.netlify/functions/getMovies', {})
         .then(res => console.log(res))
         .catch(err => console.log(err));
     }
