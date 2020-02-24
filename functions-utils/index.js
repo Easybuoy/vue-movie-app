@@ -6,7 +6,8 @@ const { IMDB_API_KEY } = process.env;
 export const sendSuccessResponse = (body, status, callback) => {
   callback(null, {
     statusCode: status,
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
+    headers
   });
 };
 
@@ -15,11 +16,7 @@ export const makeRequest = (callback, method, payload = null) => {
   let options = {
     method,
     url: API_URL,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers':
-        'Origin, X-Requested-With, Content-Type, Accept'
-    }
+    headers
   };
 
   if (payload) {
@@ -34,12 +31,6 @@ export const makeRequest = (callback, method, payload = null) => {
 export const headers = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers':
-    'Origin, X-Requested-With, Content-Type, Accept'
-}
-
-// {
-//   'Access-Control-Allow-Origin': '*',
-//   'Access-Control-Allow-Headers':
-//     'Origin, X-Requested-With, Content-Type, Accept',
-//   'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'
-// };
+    'Origin, X-Requested-With, Content-Type, Accept',
+  'Content-Type': 'application/json'
+};

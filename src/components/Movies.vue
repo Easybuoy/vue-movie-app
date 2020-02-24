@@ -6,13 +6,16 @@
 
 <script>
 import axios from 'axios';
+import configVariables from '../config';
+
+const { API_BASE_URL } = configVariables;
 
 export default {
   methods: {
     getMovies() {
       axios
-        .post('/.netlify/functions/getMovies', {})
-        .then(res => console.log(res))
+        .post(`${API_BASE_URL}/getMovies`, {})
+        .then(res => console.log(res.data))
         .catch(err => console.log(err));
     }
   },
