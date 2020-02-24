@@ -11,13 +11,13 @@ export default {
   methods: {
     getMovies() {
       axios
-        .post('http://localhost:9000/getMovies', {
+        .post('/.netlify/functions/getMovies', {
         // .post('https://vuemovieapp.netlify.com/.netlify/functions/getMovies', {
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers':
-              'Origin, X-Requested-With, Content-Type, Accept'
-          }
+        //   headers: {
+        //     'Access-Control-Allow-Origin': '*',
+        //     'Access-Control-Allow-Headers':
+        //       'Origin, X-Requested-With, Content-Type, Accept'
+        //   }
         })
         .then(res => console.log(res))
         .catch(err => console.log(err));

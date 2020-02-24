@@ -10,6 +10,6 @@ exports.handler = function(event, context, callback) {
     });
  }
 
-  makeRequest(callback, 'GET');
+  makeRequest(callback, 'POST');
 
 };
