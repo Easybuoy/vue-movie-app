@@ -16,16 +16,23 @@ export const makeRequest = (callback, method, payload = null) => {
     method,
     url: API_URL,
     headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept"
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers':
+        'Origin, X-Requested-With, Content-Type, Accept'
     }
   };
 
-  if (payload) { 
+  if (payload) {
     options.data = JSON.stringify(payload);
   }
-  
+
   axios(options)
     .then(res => sendSuccessResponse(res.data, res.status, callback))
     .catch(err => sendSuccessResponse(err, err.response.status, callback));
+};
+
+export const headers = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
 };
