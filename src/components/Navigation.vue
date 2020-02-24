@@ -51,15 +51,21 @@ export default {
       },
       {
         id: 2,
-        name: 'Account',
-        icon: 'mdi-account',
-        link: '/account'
-      },
-      {
-        id: 3,
         name: 'Movies',
         icon: 'mdi-movie',
         link: '/movies'
+      },
+       {
+        id: 3,
+        name: 'Series',
+        icon: 'mdi-movie',
+        link: '/series'
+      },
+      {
+        id: 4,
+        name: 'Account',
+        icon: 'mdi-account',
+        link: '/account'
       }
     ]
   })
