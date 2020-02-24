@@ -3,7 +3,7 @@ const { makeRequest, headers } = require('../functions-utils');
 exports.handler = function(event, context, callback) {
   if (event.httpMethod !== 'POST') {
     // To enable CORS
-    callback(null, {
+    return callback(null, {
       statusCode: 200, 
       headers,
       body: 'This was not a POST request!'
