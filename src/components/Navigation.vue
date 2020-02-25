@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card class="overflow-hidden">
+    <v-card class="overflow-hidden" style="border-radius: 0">
       <v-app-bar color="deep-purple" dark>
         <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
