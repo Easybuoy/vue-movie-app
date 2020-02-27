@@ -27,8 +27,15 @@
       </v-row>
     </v-container>
 
-    <div class="text-center">
-      <v-pagination v-model="page" :length="4" prev-icon="mdi-menu-left" next-icon="mdi-menu-right"></v-pagination>
+    <v-divider class="mt-3 mb-3"></v-divider>
+
+    <div class="text-center mb-5">
+      <v-pagination
+        v-model="page"
+        :length="totalPages"
+        prev-icon="mdi-menu-left"
+        next-icon="mdi-menu-right"
+      ></v-pagination>
     </div>
   </div>
 </template>
@@ -42,7 +49,8 @@ const { API_BASE_URL } = configVariables;
 export default {
   data: () => ({
     movies: [],
-    page: 1
+    page: 1,
+    totalPages: null
   }),
   methods: {
     getMovies() {
@@ -51,12 +59,13 @@ export default {
         .then(res => {
           this.movies = res.data.results;
           this.page = res.data.page;
+          this.totalPages = res.data.total_pages;
           console.log(res.data);
         })
         .catch(err => console.log(err));
     }
   },
-  mounted() {
+  beforeMount() {
     this.getMovies();
   }
 };
