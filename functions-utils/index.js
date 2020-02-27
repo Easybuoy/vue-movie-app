@@ -11,8 +11,9 @@ export const sendSuccessResponse = (body, status, callback) => {
   });
 };
 
-export const makeRequest = (callback, method, payload = null) => {
-  const API_URL = `https://api.themoviedb.org/3/movie/now_playing?api_key=${IMDB_API_KEY}`;
+export const makeRequest = (callback, url, method, payload = null) => {
+  const API_URL = `https://api.themoviedb.org/3/${url}?api_key=${IMDB_API_KEY}`;
+
   let options = {
     method,
     url: API_URL,
