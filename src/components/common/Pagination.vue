@@ -24,7 +24,7 @@ export default {
       required: true,
       default: 1
     },
-    getMovies: {
+    getNewPage: {
       type: Function,
       required: true
     }
@@ -37,7 +37,7 @@ export default {
   },
   watch: {
     selectedPage: function(newPage) {
-      this.getMovies(newPage);
+      this.getNewPage(newPage);
     }
   }
 };

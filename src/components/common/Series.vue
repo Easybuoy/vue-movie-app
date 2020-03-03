@@ -3,25 +3,25 @@
     <v-container class="grey lighten-5">
       <v-row no-gutters>
         <v-card
-          v-for="movie in movies"
-          :key="movie.id"
-          v-show="movie.overview.length > 0 && movie.backdrop_path"
+          v-for="serie in series"
+          :key="serie.id"
+          v-show="serie.overview.length > 0 && serie.backdrop_path"
           max-width="344"
           class="mx-auto mt-3"
         >
           <v-list-item>
             <v-list-item-content>
               <v-list-item-title class="headline">{{
-                movie.title
+                serie.name
               }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
 
           <v-img
-            :src="'https://image.tmdb.org/t/p/w1280' + movie.backdrop_path"
+            :src="'https://image.tmdb.org/t/p/w1280' + serie.backdrop_path"
             height="250"
           ></v-img>
-          <v-card-text>{{ movie.overview.slice(0, 100) + '...' }}</v-card-text>
+          <v-card-text>{{ serie.overview.slice(0, 100) + '...' }}</v-card-text>
 
           <v-card-actions>
             <v-btn text color="deep-purple accent-4">Details</v-btn>
@@ -36,7 +36,7 @@
 
     <v-divider class="mt-3 mb-3"></v-divider>
 
-    <Pagination :page="page" :totalPages="totalPages" :getNewPage="getMovies" />
+    <Pagination :page="page" :totalPages="totalPages" :getNewPage="getSeries" />
   </div>
 </template>
 
@@ -44,12 +44,12 @@
 import Pagination from './Pagination';
 
 export default {
-  name: 'Movies',
+  name: 'Series',
   components: {
     Pagination
   },
   props: {
-    movies: {
+    series: {
       type: Array,
       required: true
     },
@@ -63,7 +63,7 @@ export default {
       required: true,
       default: 1
     },
-    getMovies: {
+    getSeries: {
       type: Function,
       required: true
     }
