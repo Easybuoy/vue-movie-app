@@ -12,7 +12,7 @@ export const sendSuccessResponse = (body, status, callback) => {
 };
 
 export const makeRequest = (callback, url, method, payload = null) => {
-  const API_URL = `https://api.themoviedb.org/3/${url}?api_key=${IMDB_API_KEY}`;
+  let API_URL = `https://api.themoviedb.org/3/${url}?api_key=${IMDB_API_KEY}`;
 
   let options = {
     method,
@@ -20,8 +20,11 @@ export const makeRequest = (callback, url, method, payload = null) => {
     headers
   };
 
-  if (payload) {
-    options.data = JSON.stringify(payload);
+  const parsedPayload = JSON.parse(payload);
+  if (parsedPayload) {
+    if (parsedPayload.page) {
+      options.url = `https://api.themoviedb.org/3/${url}?api_key=${IMDB_API_KEY}&page=${parsedPayload.page}`;
+    }
   }
 
   axios(options)

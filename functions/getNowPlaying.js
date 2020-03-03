@@ -9,6 +9,6 @@ exports.handler = function(event, context, callback) {
       body: 'This was not a POST request!'
     });
   }
-
+  
   makeRequest(callback, 'movie/now_playing', 'GET');
 };
