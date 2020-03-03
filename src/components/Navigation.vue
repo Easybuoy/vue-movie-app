@@ -4,18 +4,15 @@
       <v-app-bar color="deep-purple" dark>
         <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
-        <v-toolbar-title>Movie</v-toolbar-title>
+        <v-toolbar-title>Movie Info</v-toolbar-title>
       </v-app-bar>
     </v-card>
 
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list-item>
-        <v-list-item-avatar>
-          <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img>
-        </v-list-item-avatar>
 
-        <v-list-item-content>
-          <v-list-item-title>John Leider</v-list-item-title>
+        <v-list-item-content >
+          <v-list-item-title class="text-center">Movie Info</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 

@@ -4,6 +4,7 @@ dotenv.config();
 
 const { IMDB_API_KEY } = process.env;
 export const sendSuccessResponse = (body, status, callback) => {
+
   callback(null, {
     statusCode: status,
     body: JSON.stringify(body),
@@ -20,10 +21,12 @@ export const makeRequest = (callback, url, method, payload = null) => {
     headers
   };
 
-  const parsedPayload = JSON.parse(payload);
-  if (parsedPayload) {
-    if (parsedPayload.page) {
-      options.url = `https://api.themoviedb.org/3/${url}?api_key=${IMDB_API_KEY}&page=${parsedPayload.page}`;
+  if (payload) {
+    const parsedPayload = JSON.parse(payload);
+    if (parsedPayload) {
+      if (parsedPayload.page) {
+        options.url = `https://api.themoviedb.org/3/${url}?api_key=${IMDB_API_KEY}&page=${parsedPayload.page}`;
+      }
     }
   }
 
