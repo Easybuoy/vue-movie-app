@@ -79,7 +79,6 @@ export default {
         .post(`${API_BASE_URL}/${this.path}`, { page })
         .then(res => {
           this.series = res.data.results;
-          console.log(this.series);
           this.page = res.data.page;
           this.totalPages = res.data.total_pages;
         })
