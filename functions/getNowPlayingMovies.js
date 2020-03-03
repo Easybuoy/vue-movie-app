@@ -10,5 +10,5 @@ exports.handler = function(event, context, callback) {
     });
   }
   
-  makeRequest(callback, 'movie/now_playing', 'GET');
+  makeRequest(callback, 'movie/now_playing', 'GET', event.body);
 };

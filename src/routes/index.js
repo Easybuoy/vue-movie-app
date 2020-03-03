@@ -1,4 +1,4 @@
-import Movies from '@/components/Movies';
+import MoviesContainer from '@/components/MoviesContainer';
 import Dashboard from '@/components/Dashboard';
 
 const routes = [
@@ -8,7 +8,7 @@ const routes = [
   },
   {
     path: '/movies',
-    component: Movies
+    component: MoviesContainer
   }
 ];
 

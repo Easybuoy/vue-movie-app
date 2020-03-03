@@ -4,7 +4,7 @@
       v-if="this.page"
       v-model="selectedPage"
       :length="this.totalPages"
-      :total-visible="10"
+      :total-visible="5"
       prev-icon="mdi-menu-left"
       next-icon="mdi-menu-right"
     ></v-pagination>
@@ -45,6 +45,6 @@ export default {
 
 <style>
 .pagination {
-  margin: 5rem 20rem 5rem 20rem;
+  margin: 3rem 0;
 }
 </style>
