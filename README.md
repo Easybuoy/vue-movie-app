@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/82fe9c09-3fae-40aa-8fcd-6f3635f7ecaf/deploy-status)](https://app.netlify.com/sites/vuemovieapp/deploys)
 # vue-movie-app
 
 ## Project setup
