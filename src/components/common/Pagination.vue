@@ -1,6 +1,5 @@
 <template>
   <div class="text-center pagination">
-    {{this.selectedPage}}
     <v-pagination
       v-if="this.page"
       v-model="selectedPage"

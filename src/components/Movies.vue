@@ -59,7 +59,7 @@ export default {
 
   methods: {
     getMovies(page = 1) {
-      if (page === 1) {
+      if (this.movies.length === 0) {
         this.loading = true;
       }
 
