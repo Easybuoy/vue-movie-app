@@ -66,7 +66,8 @@ export default {
     page: 1,
     totalPages: 1,
     loading: false,
-    path: 'getNowPlayingMovies'
+    path: 'getNowPlayingMovies',
+    error: null
   }),
 
   methods: {
@@ -84,6 +85,7 @@ export default {
         })
         .catch(err => {
           console.log(err);
+          this.error = err;
         })
         .finally(() => (this.loading = false));
     },

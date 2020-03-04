@@ -1,4 +1,5 @@
 import MoviesContainer from '@/components/MoviesContainer';
+import MovieDetail from '@/components/MovieDetail';
 import SeriesContainer from '@/components/SeriesContainer';
 import Dashboard from '@/components/Dashboard';
 
@@ -14,7 +15,8 @@ const routes = [
   {
     path: '/series',
     component: SeriesContainer
-  }
+  },
+  { path: '/movies/:id', name: 'movies', component: MovieDetail }
 ];
 
 export default routes;
