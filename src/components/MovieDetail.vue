@@ -1,7 +1,15 @@
 <template>
   <div>
-    <div class="text-center d-flex justify-center align-center spinner" v-if="loading">
-      <v-progress-circular :size="50" :width="5" color="deep-purple" indeterminate></v-progress-circular>
+    <div
+      class="text-center d-flex justify-center align-center spinner"
+      v-if="loading"
+    >
+      <v-progress-circular
+        :size="50"
+        :width="5"
+        color="deep-purple"
+        indeterminate
+      ></v-progress-circular>
     </div>
 
     <div v-else>
@@ -15,14 +23,17 @@
 
         <v-tab-item :key="1">
           <v-container fluid class="grey lighten-5 justify-space-between">
-            <v-row no-gutters >
-              <!-- <v-col> -->
+            <div class="contianer" no-gutters>
               <div class="movie-detail">
-                <h1 class="movie-title deep-purple--text mt-2 mb-2">{{ movie.title }}</h1>
+                <h1 class="movie-title deep-purple--text mt-2 mb-2">
+                  {{ movie.title }}
+                </h1>
 
                 <Divider />
 
-                <h4 class="movie-overview list-item grey--text text--darken-2">{{ movie.overview }}</h4>
+                <h4 class="movie-overview list-item grey--text text--darken-2">
+                  {{ movie.overview }}
+                </h4>
 
                 <Divider />
 
@@ -37,7 +48,9 @@
                   <h3 class="list-item grey--text text--darken-2">
                     <span class="deep-purple--text">Genre:&nbsp;</span>
 
-                    <span v-for="genre in movie.genres" :key="genre.id">{{ genre.name }}&nbsp;</span>
+                    <span v-for="genre in movie.genres" :key="genre.id"
+                      >{{ genre.name }}&nbsp;</span
+                    >
                   </h3>
                   <Divider />
 
@@ -47,23 +60,18 @@
                     <span
                       v-for="language in movie.spoken_languages"
                       :key="language.name"
-                    >{{ language.name }}</span>
+                      >{{ language.name }}</span
+                    >
                   </h3>
                   <Divider />
-                  <h3 class="list-item grey--text text--darken-2">
-                    <span class="deep-purple--text">Production Countries:&nbsp;</span>
 
+                  <h3 class="list-item grey--text text--darken-2">
                     <span
-                      v-for="country in movie.production_countries"
-                      :key="country.name"
-                    >{{ country.name }}</span>
-                  </h3>
-
-                  <Divider />
-
-                  <h3 class="list-item grey--text text--darken-2">
-                    <span class="deep-purple--text">Runtime:&nbsp;</span>
-                    {{ movie.runtime }}
+                      class="deep-purple--text"
+                      :v-text="this.formatRuntime(movie.runtime)"
+                      >Runtime:&nbsp;</span
+                    >
+                    {{ runtime }}
                   </h3>
 
                   <Divider />
@@ -75,12 +83,15 @@
 
                   <Divider />
 
-                  <h3 class="list-item grey--text text--darken-2">
+                  <h3
+                    v-show="movie.tagline.length > 0"
+                    class="list-item grey--text text--darken-2"
+                  >
                     <span class="deep-purple--text">Tagline:&nbsp;</span>
                     {{ movie.tagline }}
                   </h3>
 
-                  <Divider />
+                  <Divider v-show="movie.tagline.length > 0" />
 
                   <h3 class="list-item grey--text text--darken-2">
                     <span class="deep-purple--text">Average Vote:&nbsp;</span>
@@ -97,8 +108,12 @@
                   <Divider />
 
                   <h3 class="list-item grey--text text--darken-2">
-                    <span class="deep-purple--text">Revenue:&nbsp;</span>
-                    {{ movie.revenue }}
+                    <span
+                      class="deep-purple--text"
+                      :v-text="this.formatCurrency(movie.revenue)"
+                      >Revenue:&nbsp;</span
+                    >
+                    {{ currency }}
                   </h3>
 
                   <Divider />
@@ -117,7 +132,27 @@
 
                   <Divider />
 
-                  <div class="production-companies">
+                  <h3 class="list-item grey--text text--darken-2">
+                    <span class="deep-purple--text"
+                      >Production Countries:&nbsp;</span
+                    >
+
+                    <span
+                      :v-text="
+                        this.formatProductionCountries(
+                          movie.production_countries
+                        )
+                      "
+                      >{{ production_countries }}</span
+                    >
+                  </h3>
+
+                  <Divider />
+
+                  <div
+                    v-show="movie.production_companies.length > 0"
+                    class="production-companies"
+                  >
                     <h3 class="deep-purple--text">Production Companies:</h3>
 
                     <span
@@ -125,24 +160,26 @@
                       v-for="company in movie.production_companies"
                       :key="company.name"
                     >
-                      <p class="grey--text" v-show="company.logo_path !== null">{{ company.name }}</p>
+                      <p class="grey--text" v-show="company.logo_path !== null">
+                        {{ company.name }}
+                      </p>
                       <img
                         v-show="company.logo_path !== null"
-                        :src="'https://image.tmdb.org/t/p/w500' + company.logo_path"
+                        :src="
+                          'https://image.tmdb.org/t/p/w500' + company.logo_path
+                        "
                       />
                     </span>
                   </div>
                 </div>
               </div>
-              <!-- </v-col> -->
 
-              <!-- <v-col> -->
               <div class="movie-poster">
-                <v-img :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path"></v-img>
+                <v-img
+                  :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path"
+                ></v-img>
               </div>
-
-              <!-- </v-col> -->
-            </v-row>
+            </div>
           </v-container>
         </v-tab-item>
 
@@ -157,19 +194,23 @@
 </template>
 
 <script>
-import axios from "axios";
-import configVariables from "../config";
-import Divider from "./common/Divider";
+import axios from 'axios';
+import configVariables from '../config';
+import Divider from './common/Divider';
+import { formatItemToString, convertTime, currencyConverter } from '../utils';
 
 const { API_BASE_URL } = configVariables;
 
 export default {
-  name: "MovieDetails",
+  name: 'MovieDetails',
   data: () => ({
     id: null,
     movie: {},
     loading: false,
-    error: null
+    error: null,
+    production_countries: '',
+    runtime: 0,
+    currency: ''
   }),
   created() {
     this.id = this.$route.params.id;
@@ -181,15 +222,24 @@ export default {
       axios
         .post(`${API_BASE_URL}/getMovieDetail`, { id: this.id })
         .then(res => {
-          console.log(res.data);
           this.movie = res.data;
         })
         .catch(err => {
           console.log(err);
         })
         .finally(() => (this.loading = false));
+    },
+    formatProductionCountries(array) {
+      this.production_countries = formatItemToString(array);
+    },
+    formatRuntime(runtime) {
+      this.runtime = convertTime(runtime);
+    },
+    formatCurrency(currency) {
+      this.currency = currencyConverter(currency);
     }
   },
+
   components: {
     Divider
   }
@@ -197,40 +247,48 @@ export default {
 </script>
 
 <style>
+.contianer {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
+}
+
 .movie-poster {
   display: flex;
   flex-wrap: wrap;
-  width: 800px;
-  min-height: 100vh;
+  width: 45%;
   object-fit: cover;
   justify-content: center;
 }
 
 .movie-poster img {
-  display: flex;
-  flex-wrap: wrap;
-  width: 800px;
-  min-height: 100vh;
+  width: 100%;
   object-fit: cover;
-  justify-content: center;
-  margin: 0 auto;
 }
 
 .movie-detail {
   display: flex;
   flex-wrap: wrap;
-  width: 800px;
-  /* border: 1px solid red; */
+  width: 45%;
   background-color: white;
   padding: 1rem;
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
     0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-  /* min-height: 100vh; */
-  /* border-radius: 2px; */
+}
+
+@media only screen and (max-width: 1300px) {
+  .movie-poster {
+    width: 50%;
+  }
+
+  .movie-detail {
+    width: 60%;
+  }
 }
 
 .movie-detail .movie-title {
-  font-family: "Concert One", cursive;
+  font-family: 'Concert One', cursive;
   text-align: center;
   width: 100%;
   text-transform: uppercase;
@@ -241,10 +299,6 @@ export default {
   font-size: 1.2rem;
 }
 
-/* .movie-detail h4 {
-  width: 100%;
-} */
-
 .list {
   width: 100%;
   display: flex;
@@ -253,7 +307,7 @@ export default {
 
 .list-item {
   width: 100%;
-  font-family: "Mallanna", sans-serif;
+  font-family: 'Mallanna', sans-serif;
 }
 
 .production-companies {
@@ -277,5 +331,42 @@ export default {
 .production-company img {
   width: 50px;
   height: 50px;
+}
+
+@media only screen and (max-width: 1300px) {
+  .contianer {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .movie-poster {
+    margin: 1rem 0;
+    width: 70%;
+  }
+
+  .movie-detail {
+    margin: 1rem 0;
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .movie-poster {
+    width: 90%;
+  }
+
+  .movie-detail {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .movie-poster {
+    width: 97%;
+  }
+
+  .movie-detail {
+    width: 97%;
+  }
 }
 </style>
