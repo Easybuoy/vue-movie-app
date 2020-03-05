@@ -1,15 +1,7 @@
 <template>
   <div>
-    <div
-      class="text-center d-flex justify-center align-center spinner"
-      v-if="loading"
-    >
-      <v-progress-circular
-        :size="50"
-        :width="5"
-        color="deep-purple"
-        indeterminate
-      ></v-progress-circular>
+    <div class="text-center d-flex justify-center align-center spinner" v-if="loading">
+      <v-progress-circular :size="50" :width="5" color="deep-purple" indeterminate></v-progress-circular>
     </div>
 
     <div v-else>
@@ -22,77 +14,157 @@
         <v-tab @click="setPath('getTopRatedMovies')">Reviews</v-tab>
 
         <v-tab-item :key="1">
-          <v-container class="grey lighten-5">
-            <v-row no-gutters>
-              <v-col>
-                <div class="movie-detail">
-                  <h1 class="movie-title deep-purple--text">
-                    {{ movie.title }}
-                  </h1>
+          <v-container fluid class="grey lighten-5 justify-space-between">
+            <v-row no-gutters >
+              <!-- <v-col> -->
+              <div class="movie-detail">
+                <h1 class="movie-title deep-purple--text mt-2 mb-2">{{ movie.title }}</h1>
 
-                  <h4 class="mt-3">{{ movie.overview }}</h4>
+                <Divider />
 
-                  <div style="width: 100%; border:1px solid green;">
-                    <v-divider class="mt-3 mb-3"></v-divider>
-                  </div>
+                <h4 class="movie-overview list-item grey--text text--darken-2">{{ movie.overview }}</h4>
 
-                  <div class="list mt-3">
-                    <h3>
-                      <span class="deep-purple--text">Release Date:</span>
-                      {{ movie.release_date }}
-                    </h3>
+                <Divider />
 
-                    <h3>
-                      <span class="deep-purple--text">
-                        Genre:
-                      </span>
+                <div class="list">
+                  <h3 class="list-item grey--text text--darken-2">
+                    <span class="deep-purple--text">Release Date:&nbsp;</span>
+                    {{ movie.release_date }}
+                  </h3>
 
-                      <span v-for="genre in movie.genres" :key="genre.id"
-                        >{{ genre.name }}
-                      </span>
-                    </h3>
+                  <Divider />
 
-                    <h3>
-                      <span class="deep-purple--text">
-                        Genre:
-                      </span>
+                  <h3 class="list-item grey--text text--darken-2">
+                    <span class="deep-purple--text">Genre:&nbsp;</span>
 
-                      <span v-for="genre in movie.genres" :key="genre.id"
-                        >{{ genre.name }}
-                      </span>
-                    </h3>
+                    <span v-for="genre in movie.genres" :key="genre.id">{{ genre.name }}&nbsp;</span>
+                  </h3>
+                  <Divider />
+
+                  <h3 class="list-item grey--text text--darken-2">
+                    <span class="deep-purple--text">Languages: &nbsp;</span>
+
+                    <span
+                      v-for="language in movie.spoken_languages"
+                      :key="language.name"
+                    >{{ language.name }}</span>
+                  </h3>
+                  <Divider />
+                  <h3 class="list-item grey--text text--darken-2">
+                    <span class="deep-purple--text">Production Countries:&nbsp;</span>
+
+                    <span
+                      v-for="country in movie.production_countries"
+                      :key="country.name"
+                    >{{ country.name }}</span>
+                  </h3>
+
+                  <Divider />
+
+                  <h3 class="list-item grey--text text--darken-2">
+                    <span class="deep-purple--text">Runtime:&nbsp;</span>
+                    {{ movie.runtime }}
+                  </h3>
+
+                  <Divider />
+
+                  <h3 class="list-item grey--text text--darken-2">
+                    <span class="deep-purple--text">Status:&nbsp;</span>
+                    {{ movie.status }}
+                  </h3>
+
+                  <Divider />
+
+                  <h3 class="list-item grey--text text--darken-2">
+                    <span class="deep-purple--text">Tagline:&nbsp;</span>
+                    {{ movie.tagline }}
+                  </h3>
+
+                  <Divider />
+
+                  <h3 class="list-item grey--text text--darken-2">
+                    <span class="deep-purple--text">Average Vote:&nbsp;</span>
+                    {{ movie.vote_average }}
+                  </h3>
+
+                  <Divider />
+
+                  <h3 class="list-item grey--text text--darken-2">
+                    <span class="deep-purple--text">Vote Count:&nbsp;</span>
+                    {{ movie.vote_count }}
+                  </h3>
+
+                  <Divider />
+
+                  <h3 class="list-item grey--text text--darken-2">
+                    <span class="deep-purple--text">Revenue:&nbsp;</span>
+                    {{ movie.revenue }}
+                  </h3>
+
+                  <Divider />
+
+                  <h3 class="list-item grey--text text--darken-2">
+                    <span class="deep-purple--text">Adult Rated:&nbsp;</span>
+                    {{ movie.adult }}
+                  </h3>
+
+                  <Divider />
+
+                  <h3 class="list-item grey--text text--darken-2">
+                    <span class="deep-purple--text">Popularity:&nbsp;</span>
+                    {{ movie.popularity }}
+                  </h3>
+
+                  <Divider />
+
+                  <div class="production-companies">
+                    <h3 class="deep-purple--text">Production Companies:</h3>
+
+                    <span
+                      class="production-company"
+                      v-for="company in movie.production_companies"
+                      :key="company.name"
+                    >
+                      <p class="grey--text" v-show="company.logo_path !== null">{{ company.name }}</p>
+                      <img
+                        v-show="company.logo_path !== null"
+                        :src="'https://image.tmdb.org/t/p/w500' + company.logo_path"
+                      />
+                    </span>
                   </div>
                 </div>
-              </v-col>
+              </div>
+              <!-- </v-col> -->
 
-              <v-col>
-                <v-img
-                  :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path"
-                  class="movie-poster"
-                ></v-img>
-              </v-col>
+              <!-- <v-col> -->
+              <div class="movie-poster">
+                <v-img :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path"></v-img>
+              </div>
+
+              <!-- </v-col> -->
             </v-row>
           </v-container>
         </v-tab-item>
 
-        <v-tab-item :key="2"> </v-tab-item>
-        <v-tab-item :key="3"> </v-tab-item>
-        <v-tab-item :key="4"> </v-tab-item>
-        <v-tab-item :key="5"> </v-tab-item>
-        <v-tab-item :key="6"> </v-tab-item>
+        <v-tab-item :key="2"></v-tab-item>
+        <v-tab-item :key="3"></v-tab-item>
+        <v-tab-item :key="4"></v-tab-item>
+        <v-tab-item :key="5"></v-tab-item>
+        <v-tab-item :key="6"></v-tab-item>
       </v-tabs>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-import configVariables from '../config';
+import axios from "axios";
+import configVariables from "../config";
+import Divider from "./common/Divider";
 
 const { API_BASE_URL } = configVariables;
 
 export default {
-  name: 'MovieDetails',
+  name: "MovieDetails",
   data: () => ({
     id: null,
     movie: {},
@@ -117,6 +189,9 @@ export default {
         })
         .finally(() => (this.loading = false));
     }
+  },
+  components: {
+    Divider
   }
 };
 </script>
@@ -126,7 +201,16 @@ export default {
   display: flex;
   flex-wrap: wrap;
   width: 800px;
-  height: 100vh;
+  min-height: 100vh;
+  object-fit: cover;
+  justify-content: center;
+}
+
+.movie-poster img {
+  display: flex;
+  flex-wrap: wrap;
+  width: 800px;
+  min-height: 100vh;
   object-fit: cover;
   justify-content: center;
   margin: 0 auto;
@@ -135,19 +219,31 @@ export default {
 .movie-detail {
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid red;
+  width: 800px;
+  /* border: 1px solid red; */
+  background-color: white;
+  padding: 1rem;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  /* min-height: 100vh; */
+  /* border-radius: 2px; */
 }
 
 .movie-detail .movie-title {
-  font-family: 'Concert One', cursive;
+  font-family: "Concert One", cursive;
   text-align: center;
   width: 100%;
   text-transform: uppercase;
 }
 
-.movie-detail h4 {
+.movie-overview {
   width: 100%;
+  font-size: 1.2rem;
 }
+
+/* .movie-detail h4 {
+  width: 100%;
+} */
 
 .list {
   width: 100%;
@@ -155,10 +251,31 @@ export default {
   flex-wrap: wrap;
 }
 
-.list h3 {
+.list-item {
   width: 100%;
+  font-family: "Mallanna", sans-serif;
 }
 
-.list span {
+.production-companies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.production-company {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+}
+
+.production-company p {
+  font-size: 0.8rem;
+}
+
+.production-company img {
+  width: 50px;
+  height: 50px;
 }
 </style>
