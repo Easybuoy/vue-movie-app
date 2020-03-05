@@ -117,8 +117,12 @@
                   <Divider />
 
                   <h3 class="list-item grey--text text--darken-2">
-                    <span class="deep-purple--text">Adult Rated:&nbsp;</span>
-                    {{ movie.adult }}
+                    <span
+                      class="deep-purple--text"
+                      :v-text="this.formatRateing(movie.adult)"
+                      >Adult Rated:&nbsp;</span
+                    >
+                    {{ rating }}
                   </h3>
 
                   <Divider />
@@ -208,6 +212,7 @@
     </div>
 
     <Videos :id="id" name="Movie" />
+    <Casts :id="id" name="Movie" />
   </div>
 </template>
 
@@ -216,6 +221,8 @@ import axios from 'axios';
 import configVariables from '../../config';
 import Divider from '../common/Divider';
 import Videos from '../common/Videos';
+import Casts from '../common/Casts';
+
 import {
   formatItemToString,
   convertTime,
@@ -235,7 +242,8 @@ export default {
     runtime: 0,
     currency: '',
     genre: '',
-    language: ''
+    language: '',
+    rating: ''
   }),
   created() {
     this.id = this.$route.params.id;
@@ -268,12 +276,20 @@ export default {
     },
     formatLanguage(languages) {
       this.language = formatItemToString(languages);
+    },
+    formatRateing(rating) {
+      if (rating == true) {
+        this.rating = 'Yes';
+      } else {
+        this.rating = 'No';
+      }
     }
   },
 
   components: {
     Divider,
-    Videos
+    Videos,
+    Casts
   }
 };
 </script>

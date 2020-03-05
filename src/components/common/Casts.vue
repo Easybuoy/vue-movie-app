@@ -1,26 +1,18 @@
 <template>
   <div class="video" v-show="videos.length > 0">
-    <h2 class="text-center deep-purple--text mt-5">{{ name }} Videos</h2>
-
-    <youtube
-      class="single-video"
-      v-for="video in videos"
-      :key="video.id"
-      :video-id="video.key"
-      player-width="400"
-      player-height="250"
-    ></youtube>
+    <h2 class="text-center deep-purple--text mt-5">{{ name }} Casts</h2>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+
 import configVariables from '../../config';
 
 const { API_BASE_URL } = configVariables;
 
 export default {
-  name: 'Videos',
+  name: 'Casts',
   props: {
     id: {
       type: String,
@@ -33,7 +25,8 @@ export default {
   },
   data: () => ({
     selected_id: null,
-    videos: []
+    casts: [],
+    loading: false
   }),
   beforeMount() {
     this.iselected_id = this.id;
@@ -42,9 +35,10 @@ export default {
   methods: {
     getVideos() {
       axios
-        .post(`${API_BASE_URL}/getMovieDetail`, { id: this.id, path: 'videos' })
+        .post(`${API_BASE_URL}/getMovieDetail`, { id: this.id, path: 'credits' })
         .then(res => {
-          this.videos = res.data.results;
+          console.log(res.data);
+          this.casts = res.data.results;
         })
         .catch(err => {
           console.log(err);
@@ -55,22 +49,4 @@ export default {
 };
 </script>
 
-<style>
-.video {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  padding: 1rem;
-  justify-content: center;
-}
-
-.video h2 {
-  width: 100%;
-  font-family: 'Concert One', cursive;
-  text-transform: uppercase;
-}
-
-.single-video {
-  margin: 1rem;
-}
-</style>
+<style></style>
