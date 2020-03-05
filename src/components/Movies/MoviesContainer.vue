@@ -51,8 +51,8 @@
 
 <script>
 import axios from 'axios';
-import configVariables from '../config';
-import Movies from './common/Movies';
+import configVariables from '../../config';
+import Movies from './Movies';
 
 const { API_BASE_URL } = configVariables;
 

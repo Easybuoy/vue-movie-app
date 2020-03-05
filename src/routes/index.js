@@ -1,5 +1,5 @@
-import MoviesContainer from '@/components/MoviesContainer';
-import MovieDetail from '@/components/MovieDetail';
+import MoviesContainer from '@/components/Movies/MoviesContainer';
+import MovieDetail from '@/components/Movies/MovieDetail';
 import SeriesContainer from '@/components/SeriesContainer';
 import Dashboard from '@/components/Dashboard';
 

@@ -170,6 +170,22 @@
                       />
                     </span>
                   </div>
+
+                  <Divider />
+
+                  <div class="links">
+                    <a :href="movie.homepage" target="_blank"
+                      ><v-btn class="ma-2" tile color="deep-purple" dark
+                        >Movie Homepage</v-btn
+                      ></a
+                    >
+
+                    <a :href="'https://www.imdb.com/title/' + movie.imdb_id" target="_blank">
+                      <v-btn class="ma-2" tile outlined color="deep-purple">
+                        Imdb
+                      </v-btn></a
+                    >
+                  </div>
                 </div>
               </div>
 
@@ -194,9 +210,13 @@
 
 <script>
 import axios from 'axios';
-import configVariables from '../config';
-import Divider from './common/Divider';
-import { formatItemToString, convertTime, currencyConverter } from '../utils';
+import configVariables from '../../config';
+import Divider from '../common/Divider';
+import {
+  formatItemToString,
+  convertTime,
+  currencyConverter
+} from '../../utils';
 
 const { API_BASE_URL } = configVariables;
 
@@ -338,6 +358,13 @@ export default {
 .production-company img {
   width: 50px;
   height: 50px;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
 }
 
 @media only screen and (max-width: 1300px) {

@@ -25,7 +25,7 @@
 
           <v-card-actions>
             <router-link :to="'/movie/' + movie.id">
-            <v-btn text color="deep-purple accent-4">Details</v-btn>
+              <v-btn text color="deep-purple accent-4">Details</v-btn>
             </router-link>
             <v-spacer></v-spacer>
             <v-btn icon>
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import Pagination from './Pagination';
+import Pagination from '../common/Pagination';
 
 export default {
   name: 'Movies',
