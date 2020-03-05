@@ -48,8 +48,8 @@
                   <h3 class="list-item grey--text text--darken-2">
                     <span class="deep-purple--text">Genre:&nbsp;</span>
 
-                    <span v-for="genre in movie.genres" :key="genre.id"
-                      >{{ genre.name }}&nbsp;</span
+                    <span :v-text="this.formatGenre(movie.genres)"
+                      >{{ genre }}&nbsp;</span
                     >
                   </h3>
                   <Divider />
@@ -58,9 +58,8 @@
                     <span class="deep-purple--text">Languages: &nbsp;</span>
 
                     <span
-                      v-for="language in movie.spoken_languages"
-                      :key="language.name"
-                      >{{ language.name }}</span
+                      :v-text="this.formatLanguage(movie.spoken_languages)"
+                      >{{ language }}</span
                     >
                   </h3>
                   <Divider />
@@ -210,7 +209,9 @@ export default {
     error: null,
     production_countries: '',
     runtime: 0,
-    currency: ''
+    currency: '',
+    genre: '',
+    language: ''
   }),
   created() {
     this.id = this.$route.params.id;
@@ -232,11 +233,17 @@ export default {
     formatProductionCountries(array) {
       this.production_countries = formatItemToString(array);
     },
+    formatGenre(array) {
+      this.genre = formatItemToString(array);
+    },
     formatRuntime(runtime) {
       this.runtime = convertTime(runtime);
     },
     formatCurrency(currency) {
       this.currency = currencyConverter(currency);
+    },
+    formatLanguage(languages) {
+      this.language = formatItemToString(languages);
     }
   },
 

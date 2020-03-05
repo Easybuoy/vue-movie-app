@@ -2,7 +2,7 @@ export const formatItemToString = array => {
   const arrayValues = array.map(item => {
     return item.name;
   });
-  console.log('as', arrayValues.join(', '));
+
   const response = arrayValues.join(', ');
   return response;
 };
