@@ -24,7 +24,7 @@
           <v-card-text>{{ movie.overview.slice(0, 100) + '...' }}</v-card-text>
 
           <v-card-actions>
-            <router-link :to="'/movies/' + movie.id">
+            <router-link :to="'/movie/' + movie.id">
             <v-btn text color="deep-purple accent-4">Details</v-btn>
             </router-link>
             <v-spacer></v-spacer>
