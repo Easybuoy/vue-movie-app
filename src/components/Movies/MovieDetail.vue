@@ -15,7 +15,6 @@
     <div v-else>
       <v-tabs background-color="white" color="deep-purple accent-4" centered>
         <v-tab @click="setPath('getNowPlayingMovies')">Overview</v-tab>
-        <v-tab @click="setPath('getPopularMovies')">Videos</v-tab>
         <v-tab @click="setPath('getTopRatedMovies')">Casts</v-tab>
         <v-tab @click="setPath('getTopRatedMovies')">Similar Movies</v-tab>
         <v-tab @click="setPath('getTopRatedMovies')">Recomendations</v-tab>
@@ -180,7 +179,10 @@
                       ></a
                     >
 
-                    <a :href="'https://www.imdb.com/title/' + movie.imdb_id" target="_blank">
+                    <a
+                      :href="'https://www.imdb.com/title/' + movie.imdb_id"
+                      target="_blank"
+                    >
                       <v-btn class="ma-2" tile outlined color="deep-purple">
                         Imdb
                       </v-btn></a
@@ -202,9 +204,10 @@
         <v-tab-item :key="3"></v-tab-item>
         <v-tab-item :key="4"></v-tab-item>
         <v-tab-item :key="5"></v-tab-item>
-        <v-tab-item :key="6"></v-tab-item>
       </v-tabs>
     </div>
+
+    <Videos :id="id" name="Movie" />
   </div>
 </template>
 
@@ -212,6 +215,7 @@
 import axios from 'axios';
 import configVariables from '../../config';
 import Divider from '../common/Divider';
+import Videos from '../common/Videos';
 import {
   formatItemToString,
   convertTime,
@@ -268,7 +272,8 @@ export default {
   },
 
   components: {
-    Divider
+    Divider,
+    Videos
   }
 };
 </script>

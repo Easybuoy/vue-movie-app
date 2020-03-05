@@ -30,6 +30,10 @@ export const makeRequest = (callback, url, method, payload = null) => {
       if (parsedPayload.id) {
         options.url = `https://api.themoviedb.org/3/${url}/${parsedPayload.id}?api_key=${IMDB_API_KEY}`;
       }
+
+      if (parsedPayload.id && parsedPayload.path) {
+        options.url = `https://api.themoviedb.org/3/${url}/${parsedPayload.id}/${parsedPayload.path}?api_key=${IMDB_API_KEY}`;
+      }
     }
   }
 
