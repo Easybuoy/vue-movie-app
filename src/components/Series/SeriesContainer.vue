@@ -51,8 +51,8 @@
 
 <script>
 import axios from 'axios';
-import configVariables from '../config';
-import Series from './common/Series';
+import configVariables from '../../config';
+import Series from './Series';
 
 const { API_BASE_URL } = configVariables;
 

@@ -5,7 +5,7 @@
     <div class="single-video" v-for="video in videos" :key="video.id">
       <iframe
         className="embed-responsive-item"
-        :src="'http://www.youtube.com/embed/' + video.key"
+        :src="'https://www.youtube.com/embed/' + video.key"
         allowFullScreen
         title="{movie.name}"
       />

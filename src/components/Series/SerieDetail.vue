@@ -1,25 +1,15 @@
 <template>
   <div>
-    <div
-      class="text-center d-flex justify-center align-center spinner"
-      v-if="loading"
-    >
-      <v-progress-circular
-        :size="50"
-        :width="5"
-        color="deep-purple"
-        indeterminate
-      ></v-progress-circular>
+    <div class="text-center d-flex justify-center align-center spinner" v-if="loading">
+      <v-progress-circular :size="50" :width="5" color="deep-purple" indeterminate></v-progress-circular>
     </div>
 
     <div v-else-if="error !== null" class="err mt-5">
-      <v-alert type="error" dismissible=true>
-        {{ error }}
-      </v-alert>
+      <v-alert type="error" dismissible="true">{{ error }}</v-alert>
 
-      <a @click="this.reloadPage"
-        ><v-btn class="ma-2" tile color="success" dark>Reload Page</v-btn></a
-      >
+      <a @click="this.reloadPage">
+        <v-btn class="ma-2" tile color="success" dark>Reload Page</v-btn>
+      </a>
     </div>
 
     <div v-else>
@@ -32,147 +22,124 @@
           <v-container fluid class="grey lighten-5 justify-space-between">
             <div class="contianer" no-gutters>
               <div class="movie-detail">
-                <h1 class="movie-title deep-purple--text mt-2 mb-2">
-                  {{ movie.title }}
-                </h1>
+                <h1 class="movie-title deep-purple--text mt-2 mb-2">{{ serie.name }}</h1>
 
                 <Divider />
 
-                <h4 class="movie-overview list-item grey--text text--darken-2">
-                  {{ movie.overview }}
-                </h4>
+                <h4 class="movie-overview list-item grey--text text--darken-2">{{ serie.overview }}</h4>
 
                 <Divider />
 
                 <div class="list">
                   <h3 class="list-item grey--text text--darken-2">
                     <span class="deep-purple--text">Release Date:&nbsp;</span>
-                    {{ movie.release_date }}
+                    {{ serie.release_date }}
                   </h3>
 
                   <Divider />
 
-                  <h3 class="list-item grey--text text--darken-2">
+                  <!-- <h3 class="list-item grey--text text--darken-2">
                     <span class="deep-purple--text">Genre:&nbsp;</span>
 
-                    <span :v-text="this.formatGenre(movie.genres)"
-                      >{{ genre }}&nbsp;</span
-                    >
-                  </h3>
+                    <span :v-text="this.formatGenre(serie.genres)">{{ genre }}&nbsp;</span>
+                  </h3> -->
                   <Divider />
 
-                  <h3 class="list-item grey--text text--darken-2">
+                  <!-- <h3 class="list-item grey--text text--darken-2">
                     <span class="deep-purple--text">Languages: &nbsp;</span>
 
-                    <span
-                      :v-text="this.formatLanguage(movie.spoken_languages)"
-                      >{{ language }}</span
-                    >
-                  </h3>
+                    <span :v-text="this.formatLanguage(serie.spoken_languages)">{{ language }}</span>
+                  </h3> -->
                   <Divider />
 
-                  <h3 class="list-item grey--text text--darken-2">
+                  <!-- <h3 class="list-item grey--text text--darken-2">
                     <span
                       class="deep-purple--text"
-                      :v-text="this.formatRuntime(movie.runtime)"
-                      >Runtime:&nbsp;</span
-                    >
+                      :v-text="this.formatRuntime(serie.runtime)"
+                    >Runtime:&nbsp;</span>
                     {{ runtime }}
-                  </h3>
+                  </h3>-->
 
                   <Divider />
 
                   <h3 class="list-item grey--text text--darken-2">
                     <span class="deep-purple--text">Status:&nbsp;</span>
-                    {{ movie.status }}
+                    {{ serie.status }}
                   </h3>
 
                   <Divider />
 
-                  <h3
-                    v-show="movie.tagline.length > 0"
-                    class="list-item grey--text text--darken-2"
-                  >
+                  <!-- <h3 v-show="serie.tagline.length > 0" class="list-item grey--text text--darken-2">
                     <span class="deep-purple--text">Tagline:&nbsp;</span>
-                    {{ movie.tagline }}
-                  </h3>
+                    {{ serie.tagline }}
+                  </h3>-->
 
-                  <Divider v-show="movie.tagline.length > 0" />
+                  <!-- <Divider v-show="serie.tagline.length > 0" /> -->
 
                   <h3 class="list-item grey--text text--darken-2">
                     <span class="deep-purple--text">Average Vote:&nbsp;</span>
-                    {{ movie.vote_average }}
+                    {{ serie.vote_average }}
                   </h3>
 
                   <Divider />
 
                   <h3 class="list-item grey--text text--darken-2">
                     <span class="deep-purple--text">Vote Count:&nbsp;</span>
-                    {{ movie.vote_count }}
+                    {{ serie.vote_count }}
                   </h3>
 
                   <Divider />
 
-                  <h3 class="list-item grey--text text--darken-2">
+                  <!-- <h3 class="list-item grey--text text--darken-2">
                     <span
                       class="deep-purple--text"
-                      :v-text="this.formatCurrency(movie.revenue)"
-                      >Revenue:&nbsp;</span
-                    >
+                      :v-text="this.formatCurrency(serie.revenue)"
+                    >Revenue:&nbsp;</span>
                     {{ currency }}
-                  </h3>
+                  </h3>-->
 
                   <Divider />
 
-                  <h3 class="list-item grey--text text--darken-2">
+                  <!-- <h3 class="list-item grey--text text--darken-2">
                     <span
                       class="deep-purple--text"
-                      :v-text="this.formatRateing(movie.adult)"
-                      >Adult Rated:&nbsp;</span
-                    >
+                      :v-text="this.formatRateing(serie.adult)"
+                    >Adult Rated:&nbsp;</span>
                     {{ rating }}
-                  </h3>
+                  </h3>-->
 
                   <Divider />
 
                   <h3 class="list-item grey--text text--darken-2">
                     <span class="deep-purple--text">Popularity:&nbsp;</span>
-                    {{ movie.popularity }}
+                    {{ serie.popularity }}
                   </h3>
 
                   <Divider />
 
-                  <h3 class="list-item grey--text text--darken-2">
-                    <span class="deep-purple--text"
-                      >Production Countries:&nbsp;</span
-                    >
+                  <!-- <h3 class="list-item grey--text text--darken-2">
+                    <span class="deep-purple--text">Production Countries:&nbsp;</span>
 
                     <span
                       :v-text="
                         this.formatProductionCountries(
-                          movie.production_countries
+                          serie.production_countries
                         )
                       "
-                      >{{ production_countries }}</span
-                    >
-                  </h3>
+                    >{{ production_countries }}</span>
+                  </h3>-->
 
                   <Divider />
 
-                  <div
-                    v-show="movie.production_companies.length > 0"
-                    class="production-companies"
-                  >
+                  <div v-show="serie.production_companies.length > 0" class="production-companies">
                     <h3 class="deep-purple--text">Production Companies:</h3>
 
                     <span
                       class="production-company"
-                      v-for="company in movie.production_companies"
+                      v-for="company in serie.production_companies"
                       :key="company.name"
                     >
-                      <p class="grey--text" v-show="company.logo_path !== null">
-                        {{ company.name }}
-                      </p>
+                      <p class="grey--text" v-show="company.logo_path !== null">{{ company.name }}</p>
                       <img
                         v-show="company.logo_path !== null"
                         :src="
@@ -185,41 +152,32 @@
                   <Divider />
 
                   <div class="links">
-                    <a :href="movie.homepage" target="_blank"
-                      ><v-btn class="ma-2" tile color="deep-purple" dark
-                        >Movie Homepage</v-btn
-                      ></a
-                    >
+                    <a :href="serie.homepage" target="_blank">
+                      <v-btn class="ma-2" tile color="deep-purple" dark>Movie Homepage</v-btn>
+                    </a>
 
-                    <a
-                      :href="'https://www.imdb.com/title/' + movie.imdb_id"
-                      target="_blank"
-                    >
-                      <v-btn class="ma-2" tile outlined color="deep-purple">
-                        Imdb
-                      </v-btn></a
-                    >
+                    <a :href="'https://www.imdb.com/title/' + serie.imdb_id" target="_blank">
+                      <v-btn class="ma-2" tile outlined color="deep-purple">Imdb</v-btn>
+                    </a>
                   </div>
                 </div>
               </div>
 
               <div class="movie-poster">
-                <v-img
-                  :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path"
-                ></v-img>
+                <v-img :src="'https://image.tmdb.org/t/p/w1280' + serie.poster_path"></v-img>
               </div>
             </div>
           </v-container>
-          <Videos :id="id" name="Movie" />
-          <Casts :id="id" name="Movie" />
+          <Videos :id="id" name="Tv" />
+          <Casts :id="id" name="Tv" />
         </v-tab-item>
 
         <v-tab-item :key="2">
-          <Recommendations :id="id" name="Movie" path="getMovieDetail" />
-          <SimilarMovies :id="id" name="Movies" />
+          <Recommendations :id="id" name="Tv" path="getTvDetail" />
+          <SimilarMovies :id="id" name="Tv" />
         </v-tab-item>
         <v-tab-item :key="3">
-          <Reviews :id="id" name="Movie" />
+          <Reviews :id="id" name="Tv" />
         </v-tab-item>
       </v-tabs>
     </div>
@@ -227,48 +185,49 @@
 </template>
 
 <script>
-import axios from 'axios';
-import configVariables from '../../config';
-import Divider from '../common/Divider';
-import Videos from '../common/Videos';
-import Casts from '../common/Casts';
-import Recommendations from '../common/Recommendations';
-import SimilarMovies from '../common/SimilarMovies';
-import Reviews from '../common/Reviews';
+import axios from "axios";
+import configVariables from "../../config";
+import Divider from "../common/Divider";
+import Videos from "../common/Videos";
+import Casts from "../common/Casts";
+import Recommendations from "../common/Recommendations";
+import SimilarMovies from "../common/SimilarMovies";
+import Reviews from "../common/Reviews";
 
 import {
   formatItemToString,
   convertTime,
   currencyConverter
-} from '../../utils';
+} from "../../utils";
 
 const { API_BASE_URL } = configVariables;
 
 export default {
-  name: 'MovieDetails',
+  name: "TvDetails",
   data: () => ({
     id: null,
-    movie: {},
+    serie: {},
     loading: false,
     error: null,
-    production_countries: '',
+    production_countries: "",
     runtime: 0,
-    currency: '',
-    genre: '',
-    language: '',
-    rating: ''
+    currency: "",
+    genre: "",
+    language: "",
+    rating: ""
   }),
   created() {
     this.id = this.$route.params.id;
-    this.getMovieDetails();
+    this.getTvDetails();
   },
   methods: {
-    getMovieDetails() {
+    getTvDetails() {
       this.loading = true;
       axios
-        .post(`${API_BASE_URL}/getMovieDetail`, { id: this.id })
+        .post(`${API_BASE_URL}/getTvDetail`, { id: this.id })
         .then(res => {
-          this.movie = res.data;
+          console.log(res.data);
+          this.serie = res.data;
         })
         .catch(err => {
           this.error = err.message;
@@ -292,13 +251,13 @@ export default {
     },
     formatRateing(rating) {
       if (rating == true) {
-        this.rating = 'Yes';
+        this.rating = "Yes";
       } else {
-        this.rating = 'No';
+        this.rating = "No";
       }
     },
     reloadPage() {
-     return window.location.reload();
+      return window.location.reload();
     }
   },
 
@@ -374,7 +333,7 @@ export default {
 }
 
 .movie-detail .movie-title {
-  font-family: 'Concert One', cursive;
+  font-family: "Concert One", cursive;
   text-align: center;
   width: 100%;
   text-transform: uppercase;
@@ -393,7 +352,7 @@ export default {
 
 .list-item {
   width: 100%;
-  font-family: 'Mallanna', sans-serif;
+  font-family: "Mallanna", sans-serif;
 }
 
 .production-companies {

@@ -1,6 +1,7 @@
 import MoviesContainer from '@/components/Movies/MoviesContainer';
 import MovieDetail from '@/components/Movies/MovieDetail';
-import SeriesContainer from '@/components/SeriesContainer';
+import SerieDetail from '@/components/Series/SerieDetail';
+import SeriesContainer from '@/components/Series/SeriesContainer';
 import Dashboard from '@/components/Dashboard';
 
 const routes = [
@@ -16,7 +17,8 @@ const routes = [
     path: '/series',
     component: SeriesContainer
   },
-  { path: '/movie/:id', name: 'movies', component: MovieDetail }
+  { path: '/movie/:id', name: 'movies', component: MovieDetail },
+  { path: '/serie/:id', name: 'series', component: SerieDetail }
 ];
 
 export default routes;

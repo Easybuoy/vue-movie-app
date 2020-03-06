@@ -11,20 +11,26 @@
         >
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title class="headline">{{
+              <v-list-item-title class="headline">
+                {{
                 serie.name
-              }}</v-list-item-title>
+                }}
+              </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
 
-          <v-img
-            :src="'https://image.tmdb.org/t/p/w1280' + serie.backdrop_path"
-            height="250"
-          ></v-img>
+          <v-img :src="'https://image.tmdb.org/t/p/w1280' + serie.backdrop_path" height="250"></v-img>
           <v-card-text>{{ serie.overview.slice(0, 100) + '...' }}</v-card-text>
 
           <v-card-actions>
-            <v-btn text color="deep-purple accent-4">Details</v-btn>
+            <a :href="'/serie/' + serie.id" v-if="preview === 'true'">
+              <v-btn text color="deep-purple accent-4">Details</v-btn>
+            </a>
+
+            <router-link :to="'/serie/' + serie.id" v-else>
+              <v-btn text color="deep-purple accent-4">Details</v-btn>
+            </router-link>
+
             <v-spacer></v-spacer>
             <v-btn icon>
               <v-icon>mdi-heart</v-icon>
@@ -36,15 +42,20 @@
 
     <v-divider class="mt-3 mb-3"></v-divider>
 
-    <Pagination :page="page" :totalPages="totalPages" :getNewPage="getSeries" />
+    <Pagination
+      v-show="this.preview === 'false'"
+      :page="page"
+      :totalPages="totalPages"
+      :getNewPage="getSeries"
+    />
   </div>
 </template>
 
 <script>
-import Pagination from './Pagination';
+import Pagination from "../common/Pagination";
 
 export default {
-  name: 'Series',
+  name: "Series",
   components: {
     Pagination
   },
@@ -55,17 +66,23 @@ export default {
     },
     page: {
       type: Number,
-      required: true,
+      required: false,
       default: 1
     },
     totalPages: {
       type: Number,
-      required: true,
+      required: false,
       default: 1
     },
     getSeries: {
       type: Function,
-      required: true
+      required: false,
+      default: () => {}
+    },
+    preview: {
+      type: String,
+      required: false,
+      default: "false"
     }
   }
 };
