@@ -7,7 +7,7 @@
       <v-progress-circular
         :size="50"
         :width="5"
-        color="purple"
+        color="deep-purple"
         indeterminate
       ></v-progress-circular>
     </div>
@@ -51,8 +51,8 @@
 
 <script>
 import axios from 'axios';
-import configVariables from '../config';
-import Movies from './common/Movies';
+import configVariables from '../../config';
+import Movies from './Movies';
 
 const { API_BASE_URL } = configVariables;
 
@@ -66,7 +66,8 @@ export default {
     page: 1,
     totalPages: 1,
     loading: false,
-    path: 'getNowPlayingMovies'
+    path: 'getNowPlayingMovies',
+    error: null
   }),
 
   methods: {
@@ -84,6 +85,7 @@ export default {
         })
         .catch(err => {
           console.log(err);
+          this.error = err;
         })
         .finally(() => (this.loading = false));
     },
