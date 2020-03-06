@@ -3,6 +3,14 @@
     <v-progress-circular :size="50" :width="5" color="deep-purple" indeterminate></v-progress-circular>
   </div>
 
+  <div v-else-if="similarities.length === 0">
+    <h2 class="text-center deep-purple--text mt-5">
+      Similar {{ name }}
+      <Movies :movies="similarities" preview="true" />
+    </h2>
+    <h3 class="text-center deep-purple--text mt-5 mb-5 not-found">No Similar {{ name }} found</h3>
+  </div>
+
   <div v-else>
     <h2 class="text-center deep-purple--text mt-5">
       Similar {{ name }}
@@ -69,5 +77,9 @@ h2 {
   text-align: center;
   width: 100%;
   text-transform: uppercase;
+}
+
+.not-found {
+  font-family: "Mallanna", sans-serif;
 }
 </style>

@@ -12,9 +12,9 @@
   </div>
 
   <div v-else-if="reviews.length === 0">
-    <h2 class="text-center deep-purple--text mt-5">
+    <h3 class="text-center deep-purple--text mt-5 not-found">
       No Review(s) for this {{ name }} yet
-    </h2>
+    </h3>
   </div>
 
   <div v-else>
@@ -139,6 +139,9 @@ export default {
   font-family: 'Mallanna', sans-serif;
 }
 
+.not-found {
+  font-family: "Mallanna", sans-serif;
+}
 @media only screen and (max-width: 700px) {
   .review {
     width: 90%;

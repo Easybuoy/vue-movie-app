@@ -177,7 +177,7 @@
           <SimilarSeries :id="id" name="Tv" />
         </v-tab-item>
         <v-tab-item :key="3">
-          <Reviews :id="id" name="Series" path="getTvDetail" />
+          <Reviews :id="id" name="Tv" path="getTvDetail" />
         </v-tab-item>
       </v-tabs>
     </div>
