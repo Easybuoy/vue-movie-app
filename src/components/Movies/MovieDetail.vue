@@ -12,6 +12,16 @@
       ></v-progress-circular>
     </div>
 
+    <div v-else-if="error !== null" class="err mt-5">
+      <v-alert type="error" dismissible=true>
+        {{ error }}
+      </v-alert>
+
+      <a @click="this.reloadPage"
+        ><v-btn class="ma-2" tile color="success" dark>Reload Page</v-btn></a
+      >
+    </div>
+
     <div v-else>
       <v-tabs background-color="white" color="deep-purple accent-4" centered>
         <v-tab>Overview</v-tab>
@@ -261,7 +271,7 @@ export default {
           this.movie = res.data;
         })
         .catch(err => {
-          console.log(err);
+          this.error = err.message;
         })
         .finally(() => (this.loading = false));
     },
@@ -286,6 +296,9 @@ export default {
       } else {
         this.rating = 'No';
       }
+    },
+    reloadPage() {
+     return window.location.reload();
     }
   },
 
@@ -319,6 +332,25 @@ export default {
 .movie-poster img {
   width: 100%;
   object-fit: cover;
+}
+
+.err {
+  display: flex;
+  flex-wrap: wrap;
+  width: 30%;
+  margin: 0 auto;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.err a {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px;
 }
 
 .movie-detail {

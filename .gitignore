@@ -25,3 +25,6 @@ lambda
 
 # Environment Variables
 .env
+
+# Lock files
+package-lock.json
