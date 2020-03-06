@@ -8,14 +8,11 @@
           v-for="cast in casts"
           :key="cast.id"
           v-show="casts.length > 0 && cast.profile_path !== null"
-          max-width="200"
-          class="mx-auto mt-3"
+          class="mx-auto mt-3 card"
         >
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title class="headline">{{
-                cast.name
-              }}</v-list-item-title>
+              <v-card-title>{{ cast.name }}</v-card-title>
             </v-list-item-content>
           </v-list-item>
 
@@ -25,9 +22,10 @@
           ></v-img>
 
           <v-card-actions>
-            <v-card-text text class="deep-purple--text accent-4">{{
-              cast.character
-            }}</v-card-text>
+            as
+            <v-card-text text class="deep-purple--text text--darken-2 character"
+              >({{ cast.character }})</v-card-text
+            >
           </v-card-actions>
         </v-card>
       </v-row>
@@ -72,7 +70,11 @@ export default {
         })
         .then(res => {
           console.log(res.data);
-          this.casts = res.data.cast;
+          const filteredData = res.data.cast
+            .filter(cast => cast.profile_path !== null && cast.character !== '')
+            .slice(0, 12);
+
+          this.casts = filteredData;
         })
         .catch(err => {
           console.log(err);
@@ -83,4 +85,20 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.character {
+  font-family: 'Mallanna', sans-serif;
+  font-weight: bolder;
+  font-size: 1rem;
+}
+
+.card {
+  max-width: 260px;
+}
+
+@media only screen and (max-width: 550px) {
+  .card {
+    max-width: 350px;
+  }
+}
+</style>
