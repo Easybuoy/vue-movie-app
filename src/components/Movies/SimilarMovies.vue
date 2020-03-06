@@ -1,35 +1,26 @@
 <template>
-  <div
-    class="text-center d-flex justify-center align-center spinner"
-    v-if="loading"
-  >
-    <v-progress-circular
-      :size="50"
-      :width="5"
-      color="deep-purple"
-      indeterminate
-    ></v-progress-circular>
+  <div class="text-center d-flex justify-center align-center spinner" v-if="loading">
+    <v-progress-circular :size="50" :width="5" color="deep-purple" indeterminate></v-progress-circular>
   </div>
 
   <div v-else>
     <h2 class="text-center deep-purple--text mt-5">
       Similar {{ name }}
-
       <Movies :movies="similarities" preview="true" />
     </h2>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
-import Movies from '../Movies/Movies';
-import configVariables from '../../config';
+import Movies from "./Movies";
+import configVariables from "../../config";
 
 const { API_BASE_URL } = configVariables;
 
 export default {
-  name: 'Recommendations',
+  name: "Recommendations",
   props: {
     id: {
       type: String,
@@ -55,7 +46,7 @@ export default {
       axios
         .post(`${API_BASE_URL}/getMovieDetail`, {
           id: this.id,
-          path: 'similar'
+          path: "similar"
         })
         .then(res => {
           this.similarities = res.data.results;
@@ -74,7 +65,7 @@ export default {
 
 <style>
 h2 {
-  font-family: 'Concert One', cursive;
+  font-family: "Concert One", cursive;
   text-align: center;
   width: 100%;
   text-transform: uppercase;

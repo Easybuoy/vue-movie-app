@@ -219,7 +219,7 @@
           <SimilarMovies :id="id" name="Movies" />
         </v-tab-item>
         <v-tab-item :key="3">
-          <Reviews :id="id" name="Movie" />
+          <Reviews :id="id" name="Movie" path="getMovieDetail" />
         </v-tab-item>
       </v-tabs>
     </div>
@@ -233,7 +233,7 @@ import Divider from '../common/Divider';
 import Videos from '../common/Videos';
 import Casts from '../common/Casts';
 import Recommendations from '../common/Recommendations';
-import SimilarMovies from '../common/SimilarMovies';
+import SimilarMovies from './SimilarMovies';
 import Reviews from '../common/Reviews';
 
 import {

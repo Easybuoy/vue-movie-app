@@ -62,6 +62,10 @@ export default {
     name: {
       type: String,
       required: true
+    },
+    path: {
+      type: String,
+      required: true
     }
   },
   data: () => ({
@@ -79,13 +83,14 @@ export default {
     getRecommendations(page = 1) {
       this.loading = true;
       axios
-        .post(`${API_BASE_URL}/getMovieDetail`, {
+        .post(`${API_BASE_URL}/${this.path}`, {
           id: this.id,
           path: 'reviews',
           page
         })
         .then(res => {
           this.reviews = res.data.results;
+          console.log(res.data)
           this.page = res.data.page;
           this.totalPages = res.data.total_pages;
         })

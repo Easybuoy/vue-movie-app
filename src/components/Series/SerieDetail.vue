@@ -174,10 +174,10 @@
 
         <v-tab-item :key="2">
           <Recommendations :id="id" name="Tv" path="getTvDetail" />
-          <SimilarMovies :id="id" name="Tv" />
+          <SimilarSeries :id="id" name="Tv" />
         </v-tab-item>
         <v-tab-item :key="3">
-          <Reviews :id="id" name="Tv" />
+          <Reviews :id="id" name="Tv" path="getTvDetail" />
         </v-tab-item>
       </v-tabs>
     </div>
@@ -191,7 +191,7 @@ import Divider from "../common/Divider";
 import Videos from "../common/Videos";
 import Casts from "../common/Casts";
 import Recommendations from "../common/Recommendations";
-import SimilarMovies from "../common/SimilarMovies";
+import SimilarSeries from "./SimilarSeries";
 import Reviews from "../common/Reviews";
 
 import {
@@ -266,7 +266,7 @@ export default {
     Videos,
     Casts,
     Recommendations,
-    SimilarMovies,
+    SimilarSeries,
     Reviews
   }
 };
