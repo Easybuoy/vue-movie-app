@@ -24,7 +24,11 @@
           <v-card-text>{{ movie.overview.slice(0, 100) + '...' }}</v-card-text>
 
           <v-card-actions>
-            <router-link :to="'/movie/' + movie.id">
+            <a :href="'/movie/' + movie.id" v-if="preview === 'true'">
+              <v-btn text color="deep-purple accent-4">Details</v-btn></a
+            >
+
+            <router-link :to="'/movie/' + movie.id" v-else>
               <v-btn text color="deep-purple accent-4">Details</v-btn>
             </router-link>
             <v-spacer></v-spacer>
@@ -38,7 +42,12 @@
 
     <v-divider class="mt-3 mb-3"></v-divider>
 
-    <Pagination :page="page" :totalPages="totalPages" :getNewPage="getMovies" />
+    <Pagination
+      v-show="this.preview === 'false'"
+      :page="page"
+      :totalPages="totalPages"
+      :getNewPage="getMovies"
+    />
   </div>
 </template>
 
@@ -57,17 +66,23 @@ export default {
     },
     page: {
       type: Number,
-      required: true,
+      required: false,
       default: 1
     },
     totalPages: {
       type: Number,
-      required: true,
+      required: false,
       default: 1
     },
     getMovies: {
       type: Function,
-      required: true
+      required: false,
+      default: () => {}
+    },
+    preview: {
+      type: String,
+      required: false,
+      default: 'false'
     }
   }
 };

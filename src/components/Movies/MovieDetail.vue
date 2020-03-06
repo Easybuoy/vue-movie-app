@@ -14,11 +14,9 @@
 
     <div v-else>
       <v-tabs background-color="white" color="deep-purple accent-4" centered>
-        <v-tab @click="setPath('getNowPlayingMovies')">Overview</v-tab>
-        <v-tab @click="setPath('getTopRatedMovies')">Casts</v-tab>
-        <v-tab @click="setPath('getTopRatedMovies')">Similar Movies</v-tab>
-        <v-tab @click="setPath('getTopRatedMovies')">Recomendations</v-tab>
-        <v-tab @click="setPath('getTopRatedMovies')">Reviews</v-tab>
+        <v-tab>Overview</v-tab>
+        <v-tab>Recomendations</v-tab>
+        <v-tab>Reviews</v-tab>
 
         <v-tab-item :key="1">
           <v-container fluid class="grey lighten-5 justify-space-between">
@@ -202,17 +200,19 @@
               </div>
             </div>
           </v-container>
+          <Videos :id="id" name="Movie" />
+          <Casts :id="id" name="Movie" />
         </v-tab-item>
 
-        <v-tab-item :key="2"></v-tab-item>
-        <v-tab-item :key="3"></v-tab-item>
-        <v-tab-item :key="4"></v-tab-item>
-        <v-tab-item :key="5"></v-tab-item>
+        <v-tab-item :key="2">
+          <Recommendations :id="id" name="Movie" />
+          <SimilarMovies :id="id" name="Movies" />
+        </v-tab-item>
+        <v-tab-item :key="3">
+          <Reviews :id="id" name="Movie" />
+        </v-tab-item>
       </v-tabs>
     </div>
-
-    <Videos :id="id" name="Movie" />
-    <Casts :id="id" name="Movie" />
   </div>
 </template>
 
@@ -222,6 +222,9 @@ import configVariables from '../../config';
 import Divider from '../common/Divider';
 import Videos from '../common/Videos';
 import Casts from '../common/Casts';
+import Recommendations from '../common/Recommendations';
+import SimilarMovies from '../common/SimilarMovies';
+import Reviews from '../common/Reviews';
 
 import {
   formatItemToString,
@@ -289,7 +292,10 @@ export default {
   components: {
     Divider,
     Videos,
-    Casts
+    Casts,
+    Recommendations,
+    SimilarMovies,
+    Reviews
   }
 };
 </script>

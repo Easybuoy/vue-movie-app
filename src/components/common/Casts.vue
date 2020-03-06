@@ -69,7 +69,6 @@ export default {
           path: 'credits'
         })
         .then(res => {
-          console.log(res.data);
           const filteredData = res.data.cast
             .filter(cast => cast.profile_path !== null && cast.character !== '')
             .slice(0, 12);
