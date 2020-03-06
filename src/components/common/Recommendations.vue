@@ -3,8 +3,8 @@
     <v-progress-circular :size="50" :width="5" color="deep-purple" indeterminate></v-progress-circular>
   </div>
 
-  <div v-else>
-    <h2 class="text-center deep-purple--text mt-5">
+  <div v-else class="mb-5">
+    <h2 class="text-center deep-purple--text mt-5 ">
       {{ name }} Recommendations
       <Series v-if="path === 'getTvDetail'" :series="recommendations" preview="true" />
       <Movies v-else :movies="recommendations" preview="true" />

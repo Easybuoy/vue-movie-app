@@ -153,7 +153,7 @@
 
                   <div class="links">
                     <a :href="serie.homepage" target="_blank">
-                      <v-btn class="ma-2" tile color="deep-purple" dark>Movie Homepage</v-btn>
+                      <v-btn class="ma-2" tile color="deep-purple" dark>Tv Homepage</v-btn>
                     </a>
 
                     <a :href="'https://www.imdb.com/title/' + serie.imdb_id" target="_blank">
@@ -168,8 +168,8 @@
               </div>
             </div>
           </v-container>
-          <Videos :id="id" name="Tv" />
-          <Casts :id="id" name="Tv" />
+          <Videos :id="id" name="Tv" path="getTvDetail" />
+          <Casts :id="id" name="Tv" path="getTvDetail" />
         </v-tab-item>
 
         <v-tab-item :key="2">
@@ -177,7 +177,7 @@
           <SimilarSeries :id="id" name="Tv" />
         </v-tab-item>
         <v-tab-item :key="3">
-          <Reviews :id="id" name="Tv" path="getTvDetail" />
+          <Reviews :id="id" name="Series" path="getTvDetail" />
         </v-tab-item>
       </v-tabs>
     </div>

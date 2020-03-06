@@ -29,6 +29,10 @@ export default {
     name: {
       type: String,
       required: true
+    },
+    path: {
+      type: String,
+      required: true
     }
   },
   data: () => ({
@@ -42,7 +46,7 @@ export default {
   methods: {
     getVideos() {
       axios
-        .post(`${API_BASE_URL}/getMovieDetail`, { id: this.id, path: 'videos' })
+        .post(`${API_BASE_URL}/${this.path}`, { id: this.id, path: 'videos' })
         .then(res => {
           this.videos = res.data.results;
         })

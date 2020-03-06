@@ -90,7 +90,6 @@ export default {
         })
         .then(res => {
           this.reviews = res.data.results;
-          console.log(res.data)
           this.page = res.data.page;
           this.totalPages = res.data.total_pages;
         })

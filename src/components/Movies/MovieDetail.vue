@@ -210,8 +210,8 @@
               </div>
             </div>
           </v-container>
-          <Videos :id="id" name="Movie" />
-          <Casts :id="id" name="Movie" />
+          <Videos :id="id" name="Movie" path="getMovieDetail" />
+          <Casts :id="id" name="Movie" path="getMovieDetail" />
         </v-tab-item>
 
         <v-tab-item :key="2">
