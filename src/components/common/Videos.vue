@@ -2,14 +2,14 @@
   <div class="video" v-show="videos.length > 0">
     <h2 class="text-center deep-purple--text mt-5">{{ name }} Videos</h2>
 
-    <youtube
-      class="single-video"
-      v-for="video in videos"
-      :key="video.id"
-      :video-id="video.key"
-      player-width="400"
-      player-height="250"
-    ></youtube>
+    <div class="single-video" v-for="video in videos" :key="video.id">
+      <iframe
+        className="embed-responsive-item"
+        :src="'http://www.youtube.com/embed/' + video.key"
+        allowFullScreen
+        title="{movie.name}"
+      />
+    </div>
   </div>
 </template>
 
@@ -71,6 +71,49 @@ export default {
 }
 
 .single-video {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   margin: 1rem;
+  width: 30%;
+  height: 250px;
+}
+
+.single-video iframe {
+  border: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
+@media only screen and (max-width: 1000px) {
+  .single-video {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .single-video {
+    width: 43%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .single-video {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .single-video {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .single-video {
+    width: 85%;
+  }
 }
 </style>
