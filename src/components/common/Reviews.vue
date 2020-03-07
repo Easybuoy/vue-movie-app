@@ -12,9 +12,9 @@
   </div>
 
   <div v-else-if="reviews.length === 0">
-    <h2 class="text-center deep-purple--text mt-5">
+    <h3 class="text-center deep-purple--text mt-5 not-found">
       No Review(s) for this {{ name }} yet
-    </h2>
+    </h3>
   </div>
 
   <div v-else>
@@ -62,6 +62,10 @@ export default {
     name: {
       type: String,
       required: true
+    },
+    path: {
+      type: String,
+      required: true
     }
   },
   data: () => ({
@@ -79,7 +83,7 @@ export default {
     getRecommendations(page = 1) {
       this.loading = true;
       axios
-        .post(`${API_BASE_URL}/getMovieDetail`, {
+        .post(`${API_BASE_URL}/${this.path}`, {
           id: this.id,
           path: 'reviews',
           page
@@ -135,6 +139,9 @@ export default {
   font-family: 'Mallanna', sans-serif;
 }
 
+.not-found {
+  font-family: "Mallanna", sans-serif;
+}
 @media only screen and (max-width: 700px) {
   .review {
     width: 90%;

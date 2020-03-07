@@ -1,13 +1,15 @@
 <template>
   <div class="text-center pagination">
-    <v-pagination
-      v-if="this.page"
-      v-model="selectedPage"
-      :length="this.totalPages"
-      :total-visible="5"
-      prev-icon="mdi-menu-left"
-      next-icon="mdi-menu-right"
-    ></v-pagination>
+    <a href="#top">
+      <v-pagination
+        v-if="this.page"
+        v-model="selectedPage"
+        :length="this.totalPages"
+        :total-visible="5"
+        prev-icon="mdi-menu-left"
+        next-icon="mdi-menu-right"
+      ></v-pagination>
+    </a>
   </div>
 </template>
 

@@ -3,11 +3,18 @@
     <v-progress-circular :size="50" :width="5" color="deep-purple" indeterminate></v-progress-circular>
   </div>
 
-  <div v-else class="mb-5">
-    <h2 class="text-center deep-purple--text mt-5 ">
-      {{ name }} Recommendations
-      <Series v-if="path === 'getTvDetail'" :series="recommendations" preview="true" />
-      <Movies v-else :movies="recommendations" preview="true" />
+  <div v-else-if="similarities.length === 0">
+    <h2 class="text-center deep-purple--text mt-5">
+      Similar {{ name }}
+      <Movies :movies="similarities" preview="true" />
+    </h2>
+    <h3 class="text-center deep-purple--text mt-5 mb-5 not-found">No Similar {{ name }} found</h3>
+  </div>
+
+  <div v-else>
+    <h2 class="text-center deep-purple--text mt-5">
+      Similar {{ name }}
+      <Movies :movies="similarities" preview="true" />
     </h2>
   </div>
 </template>
@@ -15,8 +22,7 @@
 <script>
 import axios from "axios";
 
-import Movies from "../Movies/Movies";
-import Series from "../Series/Series";
+import Movies from "./Movies";
 import configVariables from "../../config";
 
 const { API_BASE_URL } = configVariables;
@@ -31,15 +37,11 @@ export default {
     name: {
       type: String,
       required: true
-    },
-    path: {
-      type: String,
-      required: true
     }
   },
   data: () => ({
     selected_id: null,
-    recommendations: [],
+    similarities: [],
     loading: false
   }),
   beforeMount() {
@@ -50,12 +52,12 @@ export default {
     getRecommendations() {
       this.loading = true;
       axios
-        .post(`${API_BASE_URL}/${this.path}`, {
+        .post(`${API_BASE_URL}/getMovieDetail`, {
           id: this.id,
-          path: "recommendations"
+          path: "similar"
         })
         .then(res => {
-          this.recommendations = res.data.results;
+          this.similarities = res.data.results;
         })
         .catch(err => {
           console.log(err);
@@ -64,8 +66,7 @@ export default {
     }
   },
   components: {
-    Movies,
-    Series
+    Movies
   }
 };
 </script>
@@ -76,5 +77,9 @@ h2 {
   text-align: center;
   width: 100%;
   text-transform: uppercase;
+}
+
+.not-found {
+  font-family: "Mallanna", sans-serif;
 }
 </style>
