@@ -12,7 +12,7 @@
       ></v-progress-circular>
     </div>
 
-    <div v-else>
+    <div v-else id="top">
       <v-tabs background-color="white" color="deep-purple accent-4" centered>
         <v-tab @click="setPath('getAiringTodaySeries')">Airing Today</v-tab>
         <v-tab @click="setPath('getPopularSeries')">Popular</v-tab>

@@ -6,17 +6,18 @@
 </template>
 
 <script>
-import Navigation from '@/components/Navigation';
+import Navigation from "@/components/Navigation";
 
 export default {
-  name: 'App',
-
+  name: "App",
   components: {
     Navigation
   },
-
-  data: () => ({
-    //
-  })
 };
 </script>
+
+<style scped>
+html {
+  scroll-behavior: smooth;
+}
+</style>

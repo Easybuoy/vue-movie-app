@@ -32,33 +32,24 @@
 
                 <div class="list">
                   <h3 class="list-item grey--text text--darken-2">
-                    <span class="deep-purple--text">Release Date:&nbsp;</span>
-                    {{ serie.release_date }}
+                    <span class="deep-purple--text">First Air Date:&nbsp;</span>
+                    {{ serie.first_air_date }}
                   </h3>
 
                   <Divider />
 
-                  <!-- <h3 class="list-item grey--text text--darken-2">
+                  <h3 class="list-item grey--text text--darken-2">
                     <span class="deep-purple--text">Genre:&nbsp;</span>
 
                     <span :v-text="this.formatGenre(serie.genres)">{{ genre }}&nbsp;</span>
-                  </h3> -->
+                  </h3>
                   <Divider />
 
-                  <!-- <h3 class="list-item grey--text text--darken-2">
-                    <span class="deep-purple--text">Languages: &nbsp;</span>
+                  <h3 class="list-item grey--text text--darken-2">
+                    <span class="deep-purple--text">Network: &nbsp;</span>
 
-                    <span :v-text="this.formatLanguage(serie.spoken_languages)">{{ language }}</span>
-                  </h3> -->
-                  <Divider />
-
-                  <!-- <h3 class="list-item grey--text text--darken-2">
-                    <span
-                      class="deep-purple--text"
-                      :v-text="this.formatRuntime(serie.runtime)"
-                    >Runtime:&nbsp;</span>
-                    {{ runtime }}
-                  </h3>-->
+                    <span :v-text="this.formatNetworks(serie.networks)">{{ network }}</span>
+                  </h3>
 
                   <Divider />
 
@@ -69,12 +60,19 @@
 
                   <Divider />
 
-                  <!-- <h3 v-show="serie.tagline.length > 0" class="list-item grey--text text--darken-2">
-                    <span class="deep-purple--text">Tagline:&nbsp;</span>
-                    {{ serie.tagline }}
-                  </h3>-->
+                  <h3 class="list-item grey--text text--darken-2">
+                    <span class="deep-purple--text">Seasons:&nbsp;</span>
+                    {{ serie.number_of_seasons }}
+                  </h3>
 
-                  <!-- <Divider v-show="serie.tagline.length > 0" /> -->
+                  <Divider />
+
+                  <h3 class="list-item grey--text text--darken-2">
+                    <span class="deep-purple--text">Episodes:&nbsp;</span>
+                    {{ serie.number_of_episodes }}
+                  </h3>
+
+                  <Divider />
 
                   <h3 class="list-item grey--text text--darken-2">
                     <span class="deep-purple--text">Average Vote:&nbsp;</span>
@@ -90,23 +88,10 @@
 
                   <Divider />
 
-                  <!-- <h3 class="list-item grey--text text--darken-2">
-                    <span
-                      class="deep-purple--text"
-                      :v-text="this.formatCurrency(serie.revenue)"
-                    >Revenue:&nbsp;</span>
-                    {{ currency }}
-                  </h3>-->
-
-                  <Divider />
-
-                  <!-- <h3 class="list-item grey--text text--darken-2">
-                    <span
-                      class="deep-purple--text"
-                      :v-text="this.formatRateing(serie.adult)"
-                    >Adult Rated:&nbsp;</span>
-                    {{ rating }}
-                  </h3>-->
+                  <h3 class="list-item grey--text text--darken-2">
+                    <span class="deep-purple--text">Last Air Date:&nbsp;</span>
+                    {{ serie.last_air_date }}
+                  </h3>
 
                   <Divider />
 
@@ -117,17 +102,13 @@
 
                   <Divider />
 
-                  <!-- <h3 class="list-item grey--text text--darken-2">
-                    <span class="deep-purple--text">Production Countries:&nbsp;</span>
-
+                  <h3 class="list-item grey--text text--darken-2">
                     <span
-                      :v-text="
-                        this.formatProductionCountries(
-                          serie.production_countries
-                        )
-                      "
-                    >{{ production_countries }}</span>
-                  </h3>-->
+                      class="deep-purple--text"
+                      :v-text="this.formatCreatedBy(serie.created_by)"
+                    >Created By:&nbsp;</span>
+                    {{ created_by }}
+                  </h3>
 
                   <Divider />
 
@@ -154,10 +135,6 @@
                   <div class="links">
                     <a :href="serie.homepage" target="_blank">
                       <v-btn class="ma-2" tile color="deep-purple" dark>Tv Homepage</v-btn>
-                    </a>
-
-                    <a :href="'https://www.imdb.com/title/' + serie.imdb_id" target="_blank">
-                      <v-btn class="ma-2" tile outlined color="deep-purple">Imdb</v-btn>
                     </a>
                   </div>
                 </div>
@@ -194,11 +171,7 @@ import Recommendations from "../common/Recommendations";
 import SimilarSeries from "./SimilarSeries";
 import Reviews from "../common/Reviews";
 
-import {
-  formatItemToString,
-  convertTime,
-  currencyConverter
-} from "../../utils";
+import { formatItemToString, currencyConverter } from "../../utils";
 
 const { API_BASE_URL } = configVariables;
 
@@ -214,7 +187,9 @@ export default {
     currency: "",
     genre: "",
     language: "",
-    rating: ""
+    network: "",
+    rating: "",
+    created_by: ""
   }),
   created() {
     this.id = this.$route.params.id;
@@ -240,14 +215,14 @@ export default {
     formatGenre(array) {
       this.genre = formatItemToString(array);
     },
-    formatRuntime(runtime) {
-      this.runtime = convertTime(runtime);
+    formatCreatedBy(created_by) {
+      this.created_by = formatItemToString(created_by);
     },
     formatCurrency(currency) {
       this.currency = currencyConverter(currency);
     },
-    formatLanguage(languages) {
-      this.language = formatItemToString(languages);
+    formatNetworks(networks) {
+      this.network = formatItemToString(networks);
     },
     formatRateing(rating) {
       if (rating == true) {
@@ -374,8 +349,8 @@ export default {
 }
 
 .production-company img {
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 70px;
 }
 
 .links {

@@ -415,8 +415,8 @@ export default {
 }
 
 .production-company img {
-  width: 50px;
-  height: 50px;
+   width: 100px;
+  height: 70px;
 }
 
 .links {
