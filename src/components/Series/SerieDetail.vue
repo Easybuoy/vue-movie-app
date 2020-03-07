@@ -201,7 +201,6 @@ export default {
       axios
         .post(`${API_BASE_URL}/getTvDetail`, { id: this.id })
         .then(res => {
-          console.log(res.data);
           this.serie = res.data;
         })
         .catch(err => {
