@@ -8,7 +8,7 @@
       >
         <v-row class="fill-height" align="center" justify="center">
           <div class="display-3 text-uppercase white--text">
-            <h3 class="mv-title">{{ item.title }}</h3>
+            <h3 class="mv-title">{{ item.title || item.name }}</h3>
           </div>
         </v-row>
       </v-carousel-item>
@@ -18,6 +18,11 @@
       <h2 class="deep-purple--text">Movies</h2>
       <Movies preview="true" :movies="movies" />
     </section>
+
+    <section class="movies mt-5" v-show="series.length > 0">
+      <h2 class="deep-purple--text">Series</h2>
+      <Series preview="true" :series="series" />
+    </section>
   </div>
 </template>
 
@@ -25,6 +30,8 @@
 import axios from "axios";
 import configVariables from "../config";
 import Movies from "./Movies/Movies";
+import Series from "./Series/Series";
+
 const { API_BASE_URL } = configVariables;
 
 export default {
@@ -33,7 +40,8 @@ export default {
       colors: ["primary", "secondary", "yellow darken-2", "red", "orange"],
       model: 0,
       items: [],
-      movies: []
+      movies: [],
+      series: []
     };
   },
   methods: {
@@ -59,14 +67,33 @@ export default {
           this.error = err;
         })
         .finally(() => (this.loading = false));
+    },
+    getSeries(page = 1) {
+      if (this.series.length === 0) {
+        this.loading = true;
+      }
+
+      axios
+        .post(`${API_BASE_URL}/getAiringTodaySeries`, { page })
+        .then(res => {
+          this.series = res.data.results;
+          this.page = res.data.page;
+          this.totalPages = res.data.total_pages;
+        })
+        .catch(err => {
+          console.log(err);
+        })
+        .finally(() => (this.loading = false));
     }
   },
   beforeMount() {
     this.getTrending();
     this.getMovies();
+    this.getSeries();
   },
   components: {
-    Movies
+    Movies,
+    Series
   }
 };
 </script>
