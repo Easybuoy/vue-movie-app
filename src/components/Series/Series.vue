@@ -30,11 +30,6 @@
             <router-link :to="'/serie/' + serie.id" v-else>
               <v-btn text color="deep-purple accent-4">Details</v-btn>
             </router-link>
-
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
           </v-card-actions>
         </v-card>
       </v-row>

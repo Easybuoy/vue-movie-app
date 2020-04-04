@@ -101,5 +101,6 @@ export default {
 <style>
 .mv-title {
   font-family: "Concert One", cursive;
+  text-align: center;
 }
 </style>
