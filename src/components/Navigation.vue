@@ -10,8 +10,7 @@
 
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list-item>
-
-        <v-list-item-content >
+        <v-list-item-content>
           <v-list-item-title class="text-center">Movie Info</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
@@ -36,33 +35,27 @@
 
 <script>
 export default {
-  name: 'Navigation',
+  name: "Navigation",
   data: () => ({
     drawer: false,
     navItems: [
       {
         id: 1,
-        name: 'Home',
-        icon: 'mdi-home',
-        link: '/'
+        name: "Home",
+        icon: "mdi-home",
+        link: "/"
       },
       {
         id: 2,
-        name: 'Movies',
-        icon: 'mdi-movie',
-        link: '/movies'
-      },
-       {
-        id: 3,
-        name: 'Series',
-        icon: 'mdi-movie',
-        link: '/series'
+        name: "Movies",
+        icon: "mdi-movie",
+        link: "/movies"
       },
       {
-        id: 4,
-        name: 'Account',
-        icon: 'mdi-account',
-        link: '/account'
+        id: 3,
+        name: "Series",
+        icon: "mdi-movie",
+        link: "/series"
       }
     ]
   })
