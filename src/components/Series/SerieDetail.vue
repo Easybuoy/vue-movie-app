@@ -158,6 +158,7 @@
         </v-tab-item>
       </v-tabs>
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -170,6 +171,7 @@ import Casts from "../common/Casts";
 import Recommendations from "../common/Recommendations";
 import SimilarSeries from "./SimilarSeries";
 import Reviews from "../common/Reviews";
+import Footer from "@/components/common/Footer";
 
 import { formatItemToString, currencyConverter } from "../../utils";
 
@@ -241,7 +243,8 @@ export default {
     Casts,
     Recommendations,
     SimilarSeries,
-    Reviews
+    Reviews,
+    Footer
   }
 };
 </script>

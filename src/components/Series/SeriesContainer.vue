@@ -46,6 +46,7 @@
         </v-tab-item>
       </v-tabs>
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -53,13 +54,15 @@
 import axios from 'axios';
 import configVariables from '../../config';
 import Series from './Series';
+import Footer from "@/components/common/Footer";
 
 const { API_BASE_URL } = configVariables;
 
 export default {
   name: 'SeriesContainer',
   components: {
-    Series
+    Series,
+    Footer
   },
   data: () => ({
     series: [],

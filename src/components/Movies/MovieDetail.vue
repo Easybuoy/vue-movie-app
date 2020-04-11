@@ -1,25 +1,15 @@
 <template>
   <div>
-    <div
-      class="text-center d-flex justify-center align-center spinner"
-      v-if="loading"
-    >
-      <v-progress-circular
-        :size="50"
-        :width="5"
-        color="deep-purple"
-        indeterminate
-      ></v-progress-circular>
+    <div class="text-center d-flex justify-center align-center spinner" v-if="loading">
+      <v-progress-circular :size="50" :width="5" color="deep-purple" indeterminate></v-progress-circular>
     </div>
 
     <div v-else-if="error !== null" class="err mt-5">
-      <v-alert type="error" dismissible=true>
-        {{ error }}
-      </v-alert>
+      <v-alert type="error" dismissible="true">{{ error }}</v-alert>
 
-      <a @click="this.reloadPage"
-        ><v-btn class="ma-2" tile color="success" dark>Reload Page</v-btn></a
-      >
+      <a @click="this.reloadPage">
+        <v-btn class="ma-2" tile color="success" dark>Reload Page</v-btn>
+      </a>
     </div>
 
     <div v-else>
@@ -32,15 +22,11 @@
           <v-container fluid class="grey lighten-5 justify-space-between">
             <div class="contianer" no-gutters>
               <div class="movie-detail">
-                <h1 class="movie-title deep-purple--text mt-2 mb-2">
-                  {{ movie.title }}
-                </h1>
+                <h1 class="movie-title deep-purple--text mt-2 mb-2">{{ movie.title }}</h1>
 
                 <Divider />
 
-                <h4 class="movie-overview list-item grey--text text--darken-2">
-                  {{ movie.overview }}
-                </h4>
+                <h4 class="movie-overview list-item grey--text text--darken-2">{{ movie.overview }}</h4>
 
                 <Divider />
 
@@ -55,19 +41,14 @@
                   <h3 class="list-item grey--text text--darken-2">
                     <span class="deep-purple--text">Genre:&nbsp;</span>
 
-                    <span :v-text="this.formatGenre(movie.genres)"
-                      >{{ genre }}&nbsp;</span
-                    >
+                    <span :v-text="this.formatGenre(movie.genres)">{{ genre }}&nbsp;</span>
                   </h3>
                   <Divider />
 
                   <h3 class="list-item grey--text text--darken-2">
                     <span class="deep-purple--text">Languages: &nbsp;</span>
 
-                    <span
-                      :v-text="this.formatLanguage(movie.spoken_languages)"
-                      >{{ language }}</span
-                    >
+                    <span :v-text="this.formatLanguage(movie.spoken_languages)">{{ language }}</span>
                   </h3>
                   <Divider />
 
@@ -75,8 +56,7 @@
                     <span
                       class="deep-purple--text"
                       :v-text="this.formatRuntime(movie.runtime)"
-                      >Runtime:&nbsp;</span
-                    >
+                    >Runtime:&nbsp;</span>
                     {{ runtime }}
                   </h3>
 
@@ -89,10 +69,7 @@
 
                   <Divider />
 
-                  <h3
-                    v-show="movie.tagline.length > 0"
-                    class="list-item grey--text text--darken-2"
-                  >
+                  <h3 v-show="movie.tagline.length > 0" class="list-item grey--text text--darken-2">
                     <span class="deep-purple--text">Tagline:&nbsp;</span>
                     {{ movie.tagline }}
                   </h3>
@@ -117,8 +94,7 @@
                     <span
                       class="deep-purple--text"
                       :v-text="this.formatCurrency(movie.revenue)"
-                      >Revenue:&nbsp;</span
-                    >
+                    >Revenue:&nbsp;</span>
                     {{ currency }}
                   </h3>
 
@@ -128,8 +104,7 @@
                     <span
                       class="deep-purple--text"
                       :v-text="this.formatRateing(movie.adult)"
-                      >Adult Rated:&nbsp;</span
-                    >
+                    >Adult Rated:&nbsp;</span>
                     {{ rating }}
                   </h3>
 
@@ -143,9 +118,7 @@
                   <Divider />
 
                   <h3 class="list-item grey--text text--darken-2">
-                    <span class="deep-purple--text"
-                      >Production Countries:&nbsp;</span
-                    >
+                    <span class="deep-purple--text">Production Countries:&nbsp;</span>
 
                     <span
                       :v-text="
@@ -153,16 +126,12 @@
                           movie.production_countries
                         )
                       "
-                      >{{ production_countries }}</span
-                    >
+                    >{{ production_countries }}</span>
                   </h3>
 
                   <Divider />
 
-                  <div
-                    v-show="movie.production_companies.length > 0"
-                    class="production-companies"
-                  >
+                  <div v-show="movie.production_companies.length > 0" class="production-companies">
                     <h3 class="deep-purple--text">Production Companies:</h3>
 
                     <span
@@ -170,9 +139,7 @@
                       v-for="company in movie.production_companies"
                       :key="company.name"
                     >
-                      <p class="grey--text" v-show="company.logo_path !== null">
-                        {{ company.name }}
-                      </p>
+                      <p class="grey--text" v-show="company.logo_path !== null">{{ company.name }}</p>
                       <img
                         v-show="company.logo_path !== null"
                         :src="
@@ -185,28 +152,19 @@
                   <Divider />
 
                   <div class="links">
-                    <a :href="movie.homepage" target="_blank"
-                      ><v-btn class="ma-2" tile color="deep-purple" dark
-                        >Movie Homepage</v-btn
-                      ></a
-                    >
+                    <a :href="movie.homepage" target="_blank">
+                      <v-btn class="ma-2" tile color="deep-purple" dark>Movie Homepage</v-btn>
+                    </a>
 
-                    <a
-                      :href="'https://www.imdb.com/title/' + movie.imdb_id"
-                      target="_blank"
-                    >
-                      <v-btn class="ma-2" tile outlined color="deep-purple">
-                        Imdb
-                      </v-btn></a
-                    >
+                    <a :href="'https://www.imdb.com/title/' + movie.imdb_id" target="_blank">
+                      <v-btn class="ma-2" tile outlined color="deep-purple">Imdb</v-btn>
+                    </a>
                   </div>
                 </div>
               </div>
 
               <div class="movie-poster">
-                <v-img
-                  :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path"
-                ></v-img>
+                <v-img :src="'https://image.tmdb.org/t/p/w1280' + movie.poster_path"></v-img>
               </div>
             </div>
           </v-container>
@@ -223,40 +181,42 @@
         </v-tab-item>
       </v-tabs>
     </div>
+    <Footer />
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-import configVariables from '../../config';
-import Divider from '../common/Divider';
-import Videos from '../common/Videos';
-import Casts from '../common/Casts';
-import Recommendations from '../common/Recommendations';
-import SimilarMovies from './SimilarMovies';
-import Reviews from '../common/Reviews';
+import axios from "axios";
+import configVariables from "../../config";
+import Divider from "../common/Divider";
+import Videos from "../common/Videos";
+import Casts from "../common/Casts";
+import Recommendations from "../common/Recommendations";
+import SimilarMovies from "./SimilarMovies";
+import Reviews from "../common/Reviews";
+import Footer from "@/components/common/Footer";
 
 import {
   formatItemToString,
   convertTime,
   currencyConverter
-} from '../../utils';
+} from "../../utils";
 
 const { API_BASE_URL } = configVariables;
 
 export default {
-  name: 'MovieDetails',
+  name: "MovieDetails",
   data: () => ({
     id: null,
     movie: {},
     loading: false,
     error: null,
-    production_countries: '',
+    production_countries: "",
     runtime: 0,
-    currency: '',
-    genre: '',
-    language: '',
-    rating: ''
+    currency: "",
+    genre: "",
+    language: "",
+    rating: ""
   }),
   created() {
     this.id = this.$route.params.id;
@@ -292,13 +252,13 @@ export default {
     },
     formatRateing(rating) {
       if (rating == true) {
-        this.rating = 'Yes';
+        this.rating = "Yes";
       } else {
-        this.rating = 'No';
+        this.rating = "No";
       }
     },
     reloadPage() {
-     return window.location.reload();
+      return window.location.reload();
     }
   },
 
@@ -308,7 +268,8 @@ export default {
     Casts,
     Recommendations,
     SimilarMovies,
-    Reviews
+    Reviews,
+    Footer
   }
 };
 </script>
@@ -374,7 +335,7 @@ export default {
 }
 
 .movie-detail .movie-title {
-  font-family: 'Concert One', cursive;
+  font-family: "Concert One", cursive;
   text-align: center;
   width: 100%;
   text-transform: uppercase;
@@ -393,7 +354,7 @@ export default {
 
 .list-item {
   width: 100%;
-  font-family: 'Mallanna', sans-serif;
+  font-family: "Mallanna", sans-serif;
 }
 
 .production-companies {
@@ -415,7 +376,7 @@ export default {
 }
 
 .production-company img {
-   width: 100px;
+  width: 100px;
   height: 70px;
 }
 
