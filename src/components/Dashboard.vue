@@ -23,6 +23,7 @@
       <h2 class="deep-purple--text">Series</h2>
       <Series preview="true" :series="series" />
     </section>
+    <Footer />
   </div>
 </template>
 
@@ -31,6 +32,7 @@ import axios from "axios";
 import configVariables from "../config";
 import Movies from "./Movies/Movies";
 import Series from "./Series/Series";
+import Footer from "@/components/common/Footer";
 
 const { API_BASE_URL } = configVariables;
 
@@ -93,7 +95,8 @@ export default {
   },
   components: {
     Movies,
-    Series
+    Series,
+    Footer
   }
 };
 </script>
