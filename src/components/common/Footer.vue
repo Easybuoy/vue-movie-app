@@ -1,8 +1,8 @@
 <template>
   <v-footer dark padless>
-    <v-card flat tile class="deep-purple lighten-1 white--text text-center" width="100%">
+    <v-card flat tile class="deep-purple text-center" width="100%">
       <div class="attribution">
-        <img src="../../assets/imdb.svg" style="width: 300px; height:300px;" />
+        <img src="../../assets/imdb.svg" />
       </div>
       <v-divider></v-divider>
 
@@ -20,6 +20,12 @@ export default {};
 
 <style>
 .attribution {
-    display: flex;
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.attribution img {
+  width: 300px;
 }
 </style>
