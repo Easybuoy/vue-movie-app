@@ -24,16 +24,12 @@ export default {
   props: {
     id: {
       type: String,
-      required: true
+      required: true,
     },
     name: {
       type: String,
-      required: true
+      required: true,
     },
-    path: {
-      type: String,
-      required: true
-    }
   },
   data: () => ({
     selected_id: null,
