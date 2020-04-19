@@ -17,7 +17,7 @@ export const makeRequest = (callback, url, method, payload = null) => {
   let options = {
     method,
     url: API_URL,
-    // headers,
+    headers,
   };
 
   if (payload) {
