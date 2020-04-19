@@ -17,7 +17,7 @@ export const makeRequest = (callback, url, method, payload = null) => {
   let options = {
     method,
     url: API_URL,
-    headers,
+    // headers,
   };
 
   if (payload) {
@@ -47,8 +47,8 @@ export const makeRequest = (callback, url, method, payload = null) => {
 };
 
 export const headers = {
-  // 'Access-Control-Allow-Origin': '*',
-  // 'Access-Control-Allow-Headers':
-  //   'Origin, X-Requested-With, Content-Type, Accept',
-  // 'Content-Type': 'application/json'
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers':
+    'Origin, X-Requested-With, Content-Type, Accept',
+  'Content-Type': 'application/json'
 };
