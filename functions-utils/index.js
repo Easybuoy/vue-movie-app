@@ -7,7 +7,7 @@ export const sendSuccessResponse = (body, status, callback) => {
   callback(null, {
     statusCode: status,
     body: JSON.stringify(body),
-    headers
+    headers,
   });
 };
 
@@ -17,7 +17,7 @@ export const makeRequest = (callback, url, method, payload = null) => {
   let options = {
     method,
     url: API_URL,
-    headers
+    headers,
   };
 
   if (payload) {
@@ -42,8 +42,8 @@ export const makeRequest = (callback, url, method, payload = null) => {
   }
 
   axios(options)
-    .then(res => sendSuccessResponse(res.data, res.status, callback))
-    .catch(err => sendSuccessResponse(err, err.response.status, callback));
+    .then((res) => sendSuccessResponse(res.data, res.status, callback))
+    .catch((err) => sendSuccessResponse(err, err.response.status, callback));
 };
 
 export const headers = {
